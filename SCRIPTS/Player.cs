@@ -11,10 +11,13 @@ public partial class Player : CharacterBody2D
     [Export] private float LandSpeed;
     [Export] private float DashCoolDown;
     [Export] private float DashPower;
+    [Export] private int OGDoubleJump;
 
 
     private bool CanDash = true;
     private Timer Timer;
+    private int DoubleJump;
+
 
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -23,7 +26,8 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         Speed = LandSpeed;
-        Timer = GetNode<Timer>("Timer");
+        Timer = GetNode<Timer>("DashTimer");
+        DoubleJump = OGDoubleJump;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -50,6 +54,18 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
+            --DoubleJump;
+        }
+        
+        if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && DoubleJump >= 0)
+        {
+            velocity.Y = JumpVelocity;
+            --DoubleJump;
+        }
+
+        if (IsOnFloor())
+        {
+            DoubleJump = OGDoubleJump;
         }
 
         if (direction != Vector2.Zero)

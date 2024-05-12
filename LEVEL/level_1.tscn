@@ -2709,7 +2709,10 @@ texture = ExtResource("2_jtr2w")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(4, 4)
 
-[node name="Timer" type="Timer" parent="CharacterBody2D"]
+[node name="DashTimer" type="Timer" parent="CharacterBody2D"]
+wait_time = 2.0
+
+[node name="JumpTimer" type="Timer" parent="CharacterBody2D"]
 wait_time = 2.0
 
 [node name="Water" type="Area2D" parent="."]
@@ -2732,7 +2735,8 @@ shape = SubResource("RectangleShape2D_3fxj7")
 [node name="Sprite2D" type="Sprite2D" parent="Water2"]
 texture = ExtResource("5_o740v")
 
-[connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/DashTimer" to="CharacterBody2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/JumpTimer" to="CharacterBody2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_exited" from="Water" to="Water" method="_on_body_exited"]
 [connection signal="body_entered" from="Water2" to="Water2" method="_on_body_entered"]
