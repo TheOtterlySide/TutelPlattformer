@@ -9,7 +9,13 @@ public partial class Player : CharacterBody2D
     [Export] private bool IsWater;
     [Export] private float WaterSpeed;
     [Export] private float LandSpeed;
-    
+    [Export] private float DashCoolDown;
+    [Export] private float DashPower;
+
+
+    private bool CanDash = true;
+    private Timer Timer;
+
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -17,12 +23,23 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         Speed = LandSpeed;
+        Timer = GetNode<Timer>("Timer");
     }
 
     public override void _PhysicsProcess(double delta)
     {
         Vector2 velocity = Velocity;
 
+        // Get the input direction and handle the movement/deceleration.
+        // As good practice, you should replace UI actions with custom gameplay actions.
+        Vector2 direction = Input.GetVector
+        (
+            "ui_left",
+            "ui_right",
+            "ui_up",
+            "ui_down"
+        );
+        
         // Add the gravity.
         if (!IsOnFloor())
         {
@@ -35,16 +52,6 @@ public partial class Player : CharacterBody2D
             velocity.Y = JumpVelocity;
         }
 
-        // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
-        Vector2 direction = Input.GetVector
-        (
-            "ui_left", 
-            "ui_right", 
-            "ui_up", 
-            "ui_down"
-        );
-        
         if (direction != Vector2.Zero)
         {
             velocity.X = direction.X * Speed;
@@ -54,13 +61,24 @@ public partial class Player : CharacterBody2D
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
         }
 
+        
+        if (Input.IsActionPressed("Dash") && IsOnFloor())
+        {
+            if (CanDash)
+            {
+                velocity.X = PlayerDash(velocity, direction).X;
+                CanDash = false;
+                Timer.Start();
+            }
+        }
+        
         Velocity = velocity;
         MoveAndSlide();
     }
 
-    public void IsInWater(bool Status)
+    public void IsInWater(bool status)
     {
-        if (Status)
+        if (status)
         {
             Speed = WaterSpeed;
         }
@@ -68,5 +86,16 @@ public partial class Player : CharacterBody2D
         {
             Speed = LandSpeed;
         }
+    }
+
+    private Vector2 PlayerDash(Vector2 velocity, Vector2 direction)
+    {
+        velocity.X = direction.X * Speed * DashPower;
+        return velocity;
+    }
+
+    private void _on_timer_timeout()
+    {
+        CanDash = true;
     }
 }

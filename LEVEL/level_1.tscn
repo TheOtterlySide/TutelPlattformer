@@ -12,11 +12,11 @@ texture_region_size = Vector2i(21, 21)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9.03125, 10.375, -8.90625, 10.625)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9.03125, 10.375, -8.90625, 10.625)
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2689,13 +2689,15 @@ size = Vector2(20, 23)
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_6s20i")
 format = 2
-layer_0/tile_data = PackedInt32Array(-65536, 65537, 0, -65535, 131073, 0, -65534, 131073, 0, -65533, 131073, 0, -65532, 131073, 0, -65531, 131073, 0, -65530, 131073, 0, -65529, 131073, 0, -65528, 131073, 0, -65527, 131073, 0, -65526, 131073, 0, -65525, 131073, 0, -65524, 131073, 0, -65523, 131073, 0, -65522, 131073, 0)
+layer_0/tile_data = PackedInt32Array(-65536, 65537, 0, -65535, 131073, 0, -65534, 131073, 0, -65533, 131073, 0, -65532, 131073, 0, -65531, 131073, 0, -65530, 131073, 0, -65529, 131073, 0, -65528, 131073, 0, -65527, 131073, 0, -65526, 131073, 0, -65525, 131073, 0, -65524, 131073, 0, -65523, 131073, 0, -65522, 131073, 0, -65521, 131073, 0, -65520, 131073, 0, -65519, 131073, 0, -65518, 131073, 0, -65517, 131073, 0, -65516, 131073, 0, -65515, 131073, 0, -65514, 131073, 0, -65513, 131073, 0, -65512, 131073, 0, -65511, 131073, 0, -65510, 131073, 0, -65509, 131073, 0, -65508, 131073, 0, -65507, 131073, 0, -65506, 131073, 0, -65505, 131073, 0, -65504, 131073, 0, -65503, 131073, 0, -65502, 131073, 0, -65501, 131073, 0, -65500, 131073, 0, -65499, 131073, 0, -65498, 131073, 0, -65497, 131073, 0, -65496, 131073, 0, -65495, 131073, 0)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(31, -32)
 script = ExtResource("2_42inx")
 WaterSpeed = 100.0
 LandSpeed = 400.0
+DashCoolDown = 5.0
+DashPower = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 0.5)
@@ -2707,8 +2709,11 @@ texture = ExtResource("2_jtr2w")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(4, 4)
 
+[node name="Timer" type="Timer" parent="CharacterBody2D"]
+wait_time = 2.0
+
 [node name="Water" type="Area2D" parent="."]
-position = Vector2(121, -30)
+position = Vector2(116, -85)
 script = ExtResource("4_a22oe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
@@ -2718,7 +2723,7 @@ shape = SubResource("RectangleShape2D_3fxj7")
 texture = ExtResource("5_o740v")
 
 [node name="Water2" type="Area2D" parent="."]
-position = Vector2(143, -30)
+position = Vector2(138, -85)
 script = ExtResource("4_a22oe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water2"]
@@ -2727,6 +2732,7 @@ shape = SubResource("RectangleShape2D_3fxj7")
 [node name="Sprite2D" type="Sprite2D" parent="Water2"]
 texture = ExtResource("5_o740v")
 
+[connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_exited" from="Water" to="Water" method="_on_body_exited"]
 [connection signal="body_entered" from="Water2" to="Water2" method="_on_body_entered"]
