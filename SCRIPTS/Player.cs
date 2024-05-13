@@ -12,12 +12,15 @@ public partial class Player : CharacterBody2D
     [Export] private float DashCoolDown;
     [Export] private float DashPower;
     [Export] private int OGDoubleJump;
+    [Export] private int Ammunition;
 
     [Export]
-    public PackedScene Bullet { get; set; }
+    public PackedScene BulletScene { get; set; }
     
     private bool CanDash = true;
-    private Timer Timer;
+    private bool CanShoot = true;
+    private Timer DashTimer;
+    private Timer ShootTimer;
     private int DoubleJump;
 
 
@@ -28,7 +31,9 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         Speed = LandSpeed;
-        Timer = GetNode<Timer>("DashTimer");
+        BulletScene = (PackedScene)GD.Load("res://OBJECTS/Bullet.tscn");
+        DashTimer = GetNode<Timer>("DashTimer");
+        ShootTimer = GetNode<Timer>("ShootTimer");
         DoubleJump = OGDoubleJump;
     }
 
@@ -81,7 +86,10 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionPressed("Fire"))
         {
-            Fire();
+            if (CanShoot)
+            {
+                Fire(delta, direction);
+            }
         }
         
         if (Input.IsActionPressed("Dash") && IsOnFloor())
@@ -90,7 +98,7 @@ public partial class Player : CharacterBody2D
             {
                 velocity.X = PlayerDash(velocity, direction).X;
                 CanDash = false;
-                Timer.Start();
+                DashTimer.Start();
             }
         }
         
@@ -114,10 +122,22 @@ public partial class Player : CharacterBody2D
         CanDash = true;
     }
 
-    private void Fire()
+    private void Fire(double delta, Vector2 direction)
     {
         GD.Print("FIRE");
-        var instance = Bullet.Instantiate();
-        AddChild(instance);
+        if (Ammunition <= 0) return;
+        var instance = (Bullet)BulletScene.Instantiate();
+        instance.Rotation = GlobalRotation;
+        instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y);
+        instance.LinearVelocity = instance.Transform.X * Speed;
+        --Ammunition;
+        CanShoot = false;
+        ShootTimer.Start();
+        GetTree().Root.AddChild(instance);
+    }
+
+    private void _on_shoot_timer_timeout()
+    {
+        CanShoot = true;
     }
 }

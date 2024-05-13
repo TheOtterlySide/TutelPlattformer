@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dovyturxri6dl"]
+[gd_scene load_steps=4 format=3 uid="uid://dovyturxri6dl"]
 
 [ext_resource type="Texture2D" uid="uid://dqy11y1iq1tof" path="res://ASSETS/Characters/character_0018.png" id="1_oqysd"]
+[ext_resource type="Script" path="res://SCRIPTS/Bullet.cs" id="1_pv244"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8pxq"]
 radius = 7.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+mass = 0.01
+gravity_scale = 1.66533e-16
+lock_rotation = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_pv244")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -2.25)

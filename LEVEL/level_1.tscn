@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c24106yhirk14" path="res://ASSETS/Tilemap/tilemap_packed.png" id="1_a8eno"]
 [ext_resource type="PackedScene" uid="uid://cg515s8rto0rk" path="res://OBJECTS/Player.tscn" id="2_jmas2"]
-[ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="3_laaht"]
+[ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="3_gtrx6"]
 [ext_resource type="Script" path="res://SCRIPTS/Water.cs" id="4_a22oe"]
 [ext_resource type="Texture2D" uid="uid://bhwepe5cjs8bn" path="res://ASSETS/Tiles/tile_0046.png" id="5_o740v"]
 
@@ -2689,7 +2689,9 @@ format = 2
 layer_0/tile_data = PackedInt32Array(-65536, 65537, 0, -65535, 131073, 0, -65534, 131073, 0, -65533, 131073, 0, -65532, 131073, 0, -65531, 131073, 0, -65530, 131073, 0, -65529, 131073, 0, -65528, 131073, 0, -65527, 131073, 0, -65526, 131073, 0, -65525, 131073, 0, -65524, 131073, 0, -65523, 131073, 0, -65522, 131073, 0, -65521, 131073, 0, -65520, 131073, 0, -65519, 131073, 0, -65518, 131073, 0, -65517, 131073, 0, -65516, 131073, 0, -65515, 131073, 0, -65514, 131073, 0, -65513, 131073, 0, -65512, 131073, 0, -65511, 131073, 0, -65510, 131073, 0, -65509, 131073, 0, -65508, 131073, 0, -65507, 131073, 0, -65506, 131073, 0, -65505, 131073, 0, -65504, 131073, 0, -65503, 131073, 0, -65502, 131073, 0, -65501, 131073, 0, -65500, 131073, 0, -65499, 131073, 0, -65498, 131073, 0, -65497, 131073, 0, -65496, 131073, 0, -65495, 131073, 0)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_jmas2")]
-Bullet = ExtResource("3_laaht")
+OGDoubleJump = 1
+Ammunition = 3
+BulletScene = ExtResource("3_gtrx6")
 
 [node name="Water" type="Area2D" parent="."]
 position = Vector2(116, -85)
