@@ -124,15 +124,19 @@ public partial class Player : CharacterBody2D
 
     private void Fire(double delta, Vector2 direction)
     {
-        GD.Print("FIRE");
         if (Ammunition <= 0) return;
+        
         var instance = (Bullet)BulletScene.Instantiate();
+        
+        instance.AddToGroup("Bullet");
         instance.Rotation = GlobalRotation;
         instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y);
         instance.LinearVelocity = instance.Transform.X * Speed;
+        
         --Ammunition;
         CanShoot = false;
         ShootTimer.Start();
+        
         GetTree().Root.AddChild(instance);
     }
 
