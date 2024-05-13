@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dovyturxri6dl"]
+
+[ext_resource type="Texture2D" uid="uid://dqy11y1iq1tof" path="res://ASSETS/Characters/character_0018.png" id="1_oqysd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8pxq"]
+radius = 7.0
+
+[node name="Bullet" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -2.25)
+scale = Vector2(0.708333, 0.520833)
+texture = ExtResource("1_oqysd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s8pxq")

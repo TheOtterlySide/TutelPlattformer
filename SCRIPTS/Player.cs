@@ -13,7 +13,9 @@ public partial class Player : CharacterBody2D
     [Export] private float DashPower;
     [Export] private int OGDoubleJump;
 
-
+    [Export]
+    public PackedScene Bullet { get; set; }
+    
     private bool CanDash = true;
     private Timer Timer;
     private int DoubleJump;
@@ -77,6 +79,10 @@ public partial class Player : CharacterBody2D
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
         }
 
+        if (Input.IsActionPressed("Fire"))
+        {
+            Fire();
+        }
         
         if (Input.IsActionPressed("Dash") && IsOnFloor())
         {
@@ -94,14 +100,7 @@ public partial class Player : CharacterBody2D
 
     public void IsInWater(bool status)
     {
-        if (status)
-        {
-            Speed = WaterSpeed;
-        }
-        else
-        {
-            Speed = LandSpeed;
-        }
+        Speed = status ? WaterSpeed : LandSpeed;
     }
 
     private Vector2 PlayerDash(Vector2 velocity, Vector2 direction)
@@ -113,5 +112,12 @@ public partial class Player : CharacterBody2D
     private void _on_timer_timeout()
     {
         CanDash = true;
+    }
+
+    private void Fire()
+    {
+        GD.Print("FIRE");
+        var instance = Bullet.Instantiate();
+        AddChild(instance);
     }
 }

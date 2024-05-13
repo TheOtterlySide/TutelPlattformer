@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=9 format=3 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Texture2D" uid="uid://c24106yhirk14" path="res://ASSETS/Tilemap/tilemap_packed.png" id="1_a8eno"]
-[ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="2_42inx"]
-[ext_resource type="Texture2D" uid="uid://bqb4j84403j2a" path="res://ASSETS/Characters/character_0000.png" id="2_jtr2w"]
+[ext_resource type="PackedScene" uid="uid://cg515s8rto0rk" path="res://OBJECTS/Player.tscn" id="2_jmas2"]
+[ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="3_laaht"]
 [ext_resource type="Script" path="res://SCRIPTS/Water.cs" id="4_a22oe"]
 [ext_resource type="Texture2D" uid="uid://bhwepe5cjs8bn" path="res://ASSETS/Tiles/tile_0046.png" id="5_o740v"]
 
@@ -2679,9 +2679,6 @@ tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_lnn8r")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcw6"]
-size = Vector2(20, 23)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fxj7"]
 
 [node name="Level 1" type="Node2D"]
@@ -2691,29 +2688,8 @@ tile_set = SubResource("TileSet_6s20i")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65536, 65537, 0, -65535, 131073, 0, -65534, 131073, 0, -65533, 131073, 0, -65532, 131073, 0, -65531, 131073, 0, -65530, 131073, 0, -65529, 131073, 0, -65528, 131073, 0, -65527, 131073, 0, -65526, 131073, 0, -65525, 131073, 0, -65524, 131073, 0, -65523, 131073, 0, -65522, 131073, 0, -65521, 131073, 0, -65520, 131073, 0, -65519, 131073, 0, -65518, 131073, 0, -65517, 131073, 0, -65516, 131073, 0, -65515, 131073, 0, -65514, 131073, 0, -65513, 131073, 0, -65512, 131073, 0, -65511, 131073, 0, -65510, 131073, 0, -65509, 131073, 0, -65508, 131073, 0, -65507, 131073, 0, -65506, 131073, 0, -65505, 131073, 0, -65504, 131073, 0, -65503, 131073, 0, -65502, 131073, 0, -65501, 131073, 0, -65500, 131073, 0, -65499, 131073, 0, -65498, 131073, 0, -65497, 131073, 0, -65496, 131073, 0, -65495, 131073, 0)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(31, -32)
-script = ExtResource("2_42inx")
-WaterSpeed = 100.0
-LandSpeed = 400.0
-DashCoolDown = 5.0
-DashPower = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_wgcw6")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_jtr2w")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(4, 4)
-
-[node name="DashTimer" type="Timer" parent="CharacterBody2D"]
-wait_time = 2.0
-
-[node name="JumpTimer" type="Timer" parent="CharacterBody2D"]
-wait_time = 2.0
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_jmas2")]
+Bullet = ExtResource("3_laaht")
 
 [node name="Water" type="Area2D" parent="."]
 position = Vector2(116, -85)
@@ -2735,8 +2711,6 @@ shape = SubResource("RectangleShape2D_3fxj7")
 [node name="Sprite2D" type="Sprite2D" parent="Water2"]
 texture = ExtResource("5_o740v")
 
-[connection signal="timeout" from="CharacterBody2D/DashTimer" to="CharacterBody2D" method="_on_timer_timeout"]
-[connection signal="timeout" from="CharacterBody2D/JumpTimer" to="CharacterBody2D" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_exited" from="Water" to="Water" method="_on_body_exited"]
 [connection signal="body_entered" from="Water2" to="Water2" method="_on_body_entered"]
