@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=11 format=3 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Texture2D" uid="uid://c24106yhirk14" path="res://ASSETS/Tilemap/tilemap_packed.png" id="1_a8eno"]
 [ext_resource type="PackedScene" uid="uid://cg515s8rto0rk" path="res://OBJECTS/Player.tscn" id="2_jmas2"]
-[ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="3_gtrx6"]
 [ext_resource type="Script" path="res://SCRIPTS/Water.cs" id="4_a22oe"]
 [ext_resource type="Texture2D" uid="uid://bhwepe5cjs8bn" path="res://ASSETS/Tiles/tile_0046.png" id="5_o740v"]
 [ext_resource type="Script" path="res://SCRIPTS/Enemy.cs" id="6_872is"]
@@ -2703,7 +2702,6 @@ layer_0/tile_data = PackedInt32Array(-65536, 65537, 0, -65535, 131073, 0, -65534
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_jmas2")]
 OGDoubleJump = 1
 Ammunition = 5
-BulletScene = ExtResource("3_gtrx6")
 
 [node name="Water" type="Area2D" parent="."]
 position = Vector2(116, -85)

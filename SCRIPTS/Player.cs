@@ -4,7 +4,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
     private float Speed;
-    private const float JumpVelocity = -400.0f;
+    [Export] private const float JumpVelocity = -200.0f;
 
     [Export] private bool IsWater;
     [Export] private float WaterSpeed;
