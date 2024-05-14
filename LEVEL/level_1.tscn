@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=9 format=3 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Texture2D" uid="uid://c24106yhirk14" path="res://ASSETS/Tilemap/tilemap_packed.png" id="1_a8eno"]
 [ext_resource type="PackedScene" uid="uid://cg515s8rto0rk" path="res://OBJECTS/Player.tscn" id="2_jmas2"]
 [ext_resource type="Script" path="res://SCRIPTS/Water.cs" id="4_a22oe"]
 [ext_resource type="Texture2D" uid="uid://bhwepe5cjs8bn" path="res://ASSETS/Tiles/tile_0046.png" id="5_o740v"]
-[ext_resource type="Script" path="res://SCRIPTS/Enemy.cs" id="6_872is"]
-[ext_resource type="Texture2D" uid="uid://cjfbasl7eygp0" path="res://ASSETS/Characters/character_0002.png" id="6_nnl4n"]
+[ext_resource type="PackedScene" uid="uid://cvy73tjgh5ngm" path="res://OBJECTS/enemy.tscn" id="5_omkgj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnn8r"]
 texture = ExtResource("1_a8eno")
@@ -2690,8 +2689,6 @@ sources/1 = SubResource("TileSetAtlasSource_lnn8r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fxj7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_14n13"]
-
 [node name="Level 1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2723,21 +2720,9 @@ shape = SubResource("RectangleShape2D_3fxj7")
 [node name="Sprite2D" type="Sprite2D" parent="Water2"]
 texture = ExtResource("5_o740v")
 
-[node name="Enemy" type="Area2D" parent="." groups=["Enemy"]]
-position = Vector2(235, -33)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("6_872is")
-Life = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-texture = ExtResource("6_nnl4n")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("RectangleShape2D_14n13")
+[node name="Enemy" parent="." instance=ExtResource("5_omkgj")]
 
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_exited" from="Water" to="Water" method="_on_body_exited"]
 [connection signal="body_entered" from="Water2" to="Water2" method="_on_body_entered"]
 [connection signal="body_exited" from="Water2" to="Water2" method="_on_body_exited"]
-[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_body_entered"]

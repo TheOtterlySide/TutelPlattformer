@@ -25,6 +25,7 @@ public partial class Player : CharacterBody2D
     private bool CanSlide = false;
     private Timer DashTimer;
     private Timer ShootTimer;
+    private Sprite2D PlayerSprite;
     private int DoubleJump;
 
 
@@ -38,6 +39,7 @@ public partial class Player : CharacterBody2D
         BulletScene = (PackedScene)GD.Load("res://OBJECTS/Bullet.tscn");
         DashTimer = GetNode<Timer>("DashTimer");
         ShootTimer = GetNode<Timer>("ShootTimer");
+        PlayerSprite = GetNode<Sprite2D>("Sprite2D");
         DoubleJump = OGDoubleJump;
     }
 
@@ -54,6 +56,16 @@ public partial class Player : CharacterBody2D
             "ui_up",
             "ui_down"
         );
+
+        if (Input.IsActionPressed("ui_left"))
+        {
+            PlayerSprite.FlipH = true;
+        }
+        
+        if (Input.IsActionPressed("ui_right"))
+        {
+            PlayerSprite.FlipH = false;
+        }
         
         // Add the gravity.
         if (!IsOnFloor())
@@ -75,6 +87,7 @@ public partial class Player : CharacterBody2D
         if (IsOnWall() && !IsOnFloor() && Input.IsActionJustPressed("ui_accept"))
         {
             CanSlide = false;
+            PlayerSprite.FlipH = true;
             gravity = 300;
         }
 
