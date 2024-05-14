@@ -13,12 +13,16 @@ public partial class Player : CharacterBody2D
     [Export] private float DashPower;
     [Export] private int OGDoubleJump;
     [Export] private int Ammunition;
+    
+    [Export] private int Life;
+
 
     [Export]
     public PackedScene BulletScene { get; set; }
     
     private bool CanDash = true;
     private bool CanShoot = true;
+    private bool CanSlide = false;
     private Timer DashTimer;
     private Timer ShootTimer;
     private int DoubleJump;
@@ -57,10 +61,28 @@ public partial class Player : CharacterBody2D
             velocity.Y += gravity * (float)delta;
         }
 
+        if (IsOnWall() && !IsOnFloor())
+        {
+            gravity = 200;
+            CanSlide = true;
+        }
+        else
+        {
+            CanSlide = false;
+            gravity = 300;
+        }
+
+        if (IsOnWall() && !IsOnFloor() && Input.IsActionJustPressed("ui_accept"))
+        {
+            CanSlide = false;
+            gravity = 300;
+        }
+
         // Handle Jump.
         if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
+            CanSlide = false;
             --DoubleJump;
         }
         
@@ -75,13 +97,17 @@ public partial class Player : CharacterBody2D
             DoubleJump = OGDoubleJump;
         }
 
-        if (direction != Vector2.Zero)
+        if (direction != Vector2.Zero && CanSlide == false)
         {
             velocity.X = direction.X * Speed;
         }
         else
         {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+            if (CanSlide == false)
+            {
+                velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+                
+            }
         }
 
         if (Input.IsActionPressed("Fire"))
