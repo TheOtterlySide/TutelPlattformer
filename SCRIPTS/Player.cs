@@ -29,6 +29,7 @@ public partial class Player : CharacterBody2D
     private int DoubleJump;
     private Sprite2D Gun;
     private Area2D GunPosition;
+    private Vector2 GunPositionOG;
 
 
 
@@ -40,6 +41,7 @@ public partial class Player : CharacterBody2D
         Speed = LandSpeed;
         BulletScene = (PackedScene)GD.Load("res://OBJECTS/Bullet.tscn");
         Gun = GetNode<Sprite2D>("Watergun");
+        GunPositionOG = Gun.Position;
         GunPosition = GetNode<Area2D>("GunPosition");
         DashTimer = GetNode<Timer>("DashTimer");
         ShootTimer = GetNode<Timer>("ShootTimer");
@@ -71,7 +73,8 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionPressed("ui_right"))
         {
             PlayerSprite.FlipH = false;
-            Gun.Rotation = GlobalRotation;
+            Gun.FlipH = false;
+            Gun.Position = GunPositionOG;
         }
         
         // Add the gravity.
