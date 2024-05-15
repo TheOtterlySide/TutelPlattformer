@@ -27,6 +27,8 @@ public partial class Player : CharacterBody2D
     private Timer ShootTimer;
     private Sprite2D PlayerSprite;
     private int DoubleJump;
+    private Sprite2D Gun;
+    private Area2D GunPosition;
 
 
 
@@ -37,6 +39,8 @@ public partial class Player : CharacterBody2D
     {
         Speed = LandSpeed;
         BulletScene = (PackedScene)GD.Load("res://OBJECTS/Bullet.tscn");
+        Gun = GetNode<Sprite2D>("Watergun");
+        GunPosition = GetNode<Area2D>("GunPosition");
         DashTimer = GetNode<Timer>("DashTimer");
         ShootTimer = GetNode<Timer>("ShootTimer");
         PlayerSprite = GetNode<Sprite2D>("Sprite2D");
@@ -60,11 +64,14 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionPressed("ui_left"))
         {
             PlayerSprite.FlipH = true;
+            Gun.FlipH = true;
+            Gun.Position = GunPosition.Position;
         }
         
         if (Input.IsActionPressed("ui_right"))
         {
             PlayerSprite.FlipH = false;
+            Gun.Rotation = GlobalRotation;
         }
         
         // Add the gravity.
@@ -113,13 +120,14 @@ public partial class Player : CharacterBody2D
         if (direction != Vector2.Zero && CanSlide == false)
         {
             velocity.X = direction.X * Speed;
+            SetRotation();
         }
         else
         {
             if (CanSlide == false)
             {
                 velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-                
+                SetRotation();
             }
         }
 
@@ -182,5 +190,10 @@ public partial class Player : CharacterBody2D
     private void _on_shoot_timer_timeout()
     {
         CanShoot = true;
+    }
+
+    private void SetRotation()
+    {
+        PlayerSprite.Rotation = GlobalRotation;
     }
 }
