@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvy73tjgh5ngm"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Enemy.cs" id="1_wbgrg"]
-[ext_resource type="Texture2D" uid="uid://cjfbasl7eygp0" path="res://ASSETS/Characters/character_0002.png" id="2_7fkw4"]
+[ext_resource type="Texture2D" uid="uid://dcsxwtshhlo3n" path="res://ASSETS/Characters/Player/Enemy.png" id="2_47as1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14n13"]
 
@@ -13,7 +13,7 @@ script = ExtResource("1_wbgrg")
 Life = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_7fkw4")
+texture = ExtResource("2_47as1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_14n13")
