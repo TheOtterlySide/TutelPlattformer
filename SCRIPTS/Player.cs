@@ -7,13 +7,14 @@ public partial class Player : CharacterBody2D
     [Export] private const float JumpVelocity = -200.0f;
 
     [Export] private bool IsWater;
+    
     [Export] private float WaterSpeed;
     [Export] private float LandSpeed;
     [Export] private float DashCoolDown;
     [Export] private float DashPower;
+    
     [Export] private int OGDoubleJump;
     [Export] private int Ammunition;
-    
     [Export] private int Life;
 
 
@@ -22,14 +23,20 @@ public partial class Player : CharacterBody2D
     
     private bool CanDash = true;
     private bool CanShoot = true;
-    private bool CanSlide = false;
+    private bool CanSlide;
+    
     private Timer DashTimer;
     private Timer ShootTimer;
+    
     private Sprite2D PlayerSprite;
-    private int DoubleJump;
     private Sprite2D Gun;
+    
+    private int DoubleJump;
+
     private Area2D GunPosition;
     private Vector2 GunPositionOG;
+
+    private GpuParticles2D WallSlideParticle;
 
 
 
@@ -46,6 +53,7 @@ public partial class Player : CharacterBody2D
         DashTimer = GetNode<Timer>("DashTimer");
         ShootTimer = GetNode<Timer>("ShootTimer");
         PlayerSprite = GetNode<Sprite2D>("Sprite2D");
+        WallSlideParticle = GetNode<GpuParticles2D>("GPUParticles2D");
         DoubleJump = OGDoubleJump;
     }
 
@@ -87,11 +95,13 @@ public partial class Player : CharacterBody2D
         {
             gravity = 200;
             CanSlide = true;
+            WallSlideParticle.Emitting = true;
         }
         else
         {
             CanSlide = false;
             gravity = 300;
+            WallSlideParticle.Emitting = false;
         }
 
         if (IsOnWall() && !IsOnFloor() && Input.IsActionJustPressed("ui_accept"))
@@ -99,6 +109,7 @@ public partial class Player : CharacterBody2D
             CanSlide = false;
             PlayerSprite.FlipH = true;
             gravity = 300;
+            WallSlideParticle.Emitting = false;
         }
 
         // Handle Jump.

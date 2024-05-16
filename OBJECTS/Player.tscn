@@ -1,12 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=12 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
 [ext_resource type="Texture2D" uid="uid://bn45vlucvwwn5" path="res://ASSETS/Characters/Player/Tutel.png" id="3_w1dfp"]
 [ext_resource type="Texture2D" uid="uid://bbtefmxcq2c6o" path="res://ASSETS/Characters/Player/Watergun.png" id="4_uj4co"]
+[ext_resource type="Texture2D" uid="uid://d33mqps6in104" path="res://ASSETS/Objects/vfx_effect_diamond_1.png" id="5_t6rmb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcw6"]
 size = Vector2(27, 38)
+
+[sub_resource type="Gradient" id="Gradient_4u3hk"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.946721, 1)
+colors = PackedColorArray(0, 0, 0, 0.733333, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8bg5i"]
+gradient = SubResource("Gradient_4u3hk")
+
+[sub_resource type="Curve" id="Curve_7eqrr"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g1ryl"]
+curve = SubResource("Curve_7eqrr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7kf7c"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+angle_max = 226.5
+inherit_velocity_ratio = 0.36
+spread = 17.697
+gravity = Vector3(2.08165e-12, -100, 2.08165e-12)
+scale_min = 0.5
+scale_max = 0.75
+scale_over_velocity_min = 230.34
+scale_over_velocity_max = 235.96
+scale_over_velocity_curve = SubResource("CurveTexture_g1ryl")
+color_ramp = SubResource("GradientTexture1D_8bg5i")
+turbulence_enabled = true
+turbulence_noise_strength = 2.89
+turbulence_noise_scale = 2.158
+turbulence_noise_speed_random = 0.06
+turbulence_influence_min = 0.021
+turbulence_influence_max = 0.037
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(31, -32)
@@ -40,6 +78,17 @@ texture = ExtResource("4_uj4co")
 
 [node name="GunPosition" type="Area2D" parent="."]
 position = Vector2(-9, 5)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(8, 6)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 5
+amount_ratio = 0.9905
+process_material = SubResource("ParticleProcessMaterial_7kf7c")
+texture = ExtResource("5_t6rmb")
+trail_lifetime = 2.48
+trail_sections = 4
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
