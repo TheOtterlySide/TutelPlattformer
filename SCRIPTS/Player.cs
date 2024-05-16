@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Godot.Collections;
 
 public partial class Player : CharacterBody2D
 {
@@ -33,10 +36,19 @@ public partial class Player : CharacterBody2D
     
     private int DoubleJump;
 
+    private Sprite2D HUDAmmo1;
+    private Sprite2D HUDAmmo2;
+    private Sprite2D HUDAmmo3;
+    private Sprite2D HUDAmmo4;
+    private Sprite2D HUDAmmo5;
+    private List<Sprite2D> AmmoList = new List<Sprite2D>();
+    private int AmmoOG;
+
     private Area2D GunPosition;
     private Vector2 GunPositionOG;
 
     private GpuParticles2D WallSlideParticle;
+    private Vector2 WallSlideParticlePositionOG;
 
 
 
@@ -54,7 +66,30 @@ public partial class Player : CharacterBody2D
         ShootTimer = GetNode<Timer>("ShootTimer");
         PlayerSprite = GetNode<Sprite2D>("Sprite2D");
         WallSlideParticle = GetNode<GpuParticles2D>("GPUParticles2D");
+        WallSlideParticlePositionOG = WallSlideParticle.Position;
         DoubleJump = OGDoubleJump;
+        AmmoOG = Ammunition;
+
+        HUDAmmo1 = GetNode<Sprite2D>("HUD/1");
+        HUDAmmo2 = GetNode<Sprite2D>("HUD/2");
+        HUDAmmo3 = GetNode<Sprite2D>("HUD/3");
+        HUDAmmo4 = GetNode<Sprite2D>("HUD/4");
+        HUDAmmo5 = GetNode<Sprite2D>("HUD/5");
+        SetupHUD();
+    }
+
+    private void SetupHUD()
+    {
+        AmmoList.Add(HUDAmmo1);
+        AmmoList.Add(HUDAmmo2);
+        AmmoList.Add(HUDAmmo3);
+        AmmoList.Add(HUDAmmo4);
+        AmmoList.Add(HUDAmmo5);
+        
+        foreach (var node in AmmoList)
+        {
+            node.Visible = true;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -76,6 +111,7 @@ public partial class Player : CharacterBody2D
             PlayerSprite.FlipH = true;
             Gun.FlipH = true;
             Gun.Position = GunPosition.Position;
+            WallSlideParticle.Position = GunPosition.Position;
         }
         
         if (Input.IsActionPressed("ui_right"))
@@ -83,6 +119,7 @@ public partial class Player : CharacterBody2D
             PlayerSprite.FlipH = false;
             Gun.FlipH = false;
             Gun.Position = GunPositionOG;
+            WallSlideParticle.Position = WallSlideParticlePositionOG;
         }
         
         // Add the gravity.
@@ -134,14 +171,12 @@ public partial class Player : CharacterBody2D
         if (direction != Vector2.Zero && CanSlide == false)
         {
             velocity.X = direction.X * Speed;
-            SetRotation();
         }
         else
         {
             if (CanSlide == false)
             {
                 velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-                SetRotation();
             }
         }
 
@@ -197,6 +232,7 @@ public partial class Player : CharacterBody2D
         --Ammunition;
         CanShoot = false;
         ShootTimer.Start();
+        HandleAmmo();
         
         GetTree().Root.AddChild(instance);
     }
@@ -206,8 +242,52 @@ public partial class Player : CharacterBody2D
         CanShoot = true;
     }
 
-    private void SetRotation()
+    private void HandleAmmo()
     {
-        PlayerSprite.Rotation = GlobalRotation;
+        switch (Ammunition)
+        {
+            case 5:
+                HUDAmmo1.Visible = false;
+                break;
+            case 4:
+                ChangeHUDAmmo(4);
+                break;
+            case 3:                
+                ChangeHUDAmmo(3);
+                break;
+            case 2:
+                ChangeHUDAmmo(2);
+                break;
+            case 1:
+                ChangeHUDAmmo(1);
+                break;
+            case 0:
+                ChangeHUDAmmo(0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ChangeHUDAmmo(int countActive)
+    {
+        GD.Print("Handling Ammo " + countActive);
+
+        for (int i = 0; i < countActive; i++)
+        {
+            GD.Print("For" + countActive);
+            AmmoList[i].Visible = false;
+        }
+
+        if (countActive != AmmoOG)
+        {
+            var disc = AmmoOG - countActive;
+            GD.Print("disc" + countActive);
+
+            for (int i = disc; i < AmmoOG; i++)
+            {
+                AmmoList[i].Visible = false;
+            }
+        }
     }
 }
