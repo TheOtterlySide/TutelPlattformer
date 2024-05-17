@@ -247,7 +247,7 @@ public partial class Player : CharacterBody2D
         switch (Ammunition)
         {
             case 5:
-                HUDAmmo1.Visible = false;
+                ChangeHUDAmmo(5);
                 break;
             case 4:
                 ChangeHUDAmmo(4);
@@ -271,23 +271,10 @@ public partial class Player : CharacterBody2D
 
     private void ChangeHUDAmmo(int countActive)
     {
-        GD.Print("Handling Ammo " + countActive);
 
-        for (int i = 0; i < countActive; i++)
+        for (int i = countActive; i <= AmmoList.Count; i++)
         {
-            GD.Print("For" + countActive);
             AmmoList[i].Visible = false;
-        }
-
-        if (countActive != AmmoOG)
-        {
-            var disc = AmmoOG - countActive;
-            GD.Print("disc" + countActive);
-
-            for (int i = disc; i < AmmoOG; i++)
-            {
-                AmmoList[i].Visible = false;
-            }
         }
     }
 }
