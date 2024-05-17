@@ -50,6 +50,8 @@ public partial class Player : CharacterBody2D
     private GpuParticles2D WallSlideParticle;
     private Vector2 WallSlideParticlePositionOG;
 
+    private Vector2 BulletDirection = Vector2.Right;
+
 
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -112,6 +114,7 @@ public partial class Player : CharacterBody2D
             Gun.FlipH = true;
             Gun.Position = GunPosition.Position;
             WallSlideParticle.Position = GunPosition.Position;
+            BulletDirection = Vector2.Left;
         }
         
         if (Input.IsActionPressed("ui_right"))
@@ -120,6 +123,7 @@ public partial class Player : CharacterBody2D
             Gun.FlipH = false;
             Gun.Position = GunPositionOG;
             WallSlideParticle.Position = WallSlideParticlePositionOG;
+            BulletDirection = Vector2.Right;
         }
         
         // Add the gravity.
@@ -226,13 +230,16 @@ public partial class Player : CharacterBody2D
         
         instance.AddToGroup("Bullet");
         instance.Rotation = GlobalRotation;
-        instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y);
-        instance.LinearVelocity = instance.Transform.X * Speed;
+        instance.Position = new Vector2( GlobalPosition.X + 2, GlobalPosition.Y);
+        
+        GD.Print(instance.Transform.X);
+        GD.Print(BulletDirection);
+        instance.LinearVelocity = instance.Transform.X * BulletDirection * Speed;
         
         --Ammunition;
+        DeactivateHUDAmmo(Ammunition);
         CanShoot = false;
         ShootTimer.Start();
-        HandleAmmo();
         
         GetTree().Root.AddChild(instance);
     }
@@ -242,37 +249,10 @@ public partial class Player : CharacterBody2D
         CanShoot = true;
     }
 
-    private void HandleAmmo()
-    {
-        switch (Ammunition)
-        {
-            case 5:
-                ChangeHUDAmmo(5);
-                break;
-            case 4:
-                ChangeHUDAmmo(4);
-                break;
-            case 3:                
-                ChangeHUDAmmo(3);
-                break;
-            case 2:
-                ChangeHUDAmmo(2);
-                break;
-            case 1:
-                ChangeHUDAmmo(1);
-                break;
-            case 0:
-                ChangeHUDAmmo(0);
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void ChangeHUDAmmo(int countActive)
+    private void DeactivateHUDAmmo(int countActive)
     {
 
-        for (int i = countActive; i <= AmmoList.Count; i++)
+        for (int i = countActive; i < AmmoList.Count; i++)
         {
             AmmoList[i].Visible = false;
         }
