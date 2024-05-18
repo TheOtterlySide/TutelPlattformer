@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=24 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
@@ -9,6 +9,94 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcw6"]
 size = Vector2(27, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpiur"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kik4r"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26sjb"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nacoi"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8em2c"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q70re"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i1m7"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhukm"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgkx4"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6vto"]
+atlas = ExtResource("4_uj4co")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3486"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpiur")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kik4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26sjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nacoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8em2c")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q70re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i1m7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhukm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgkx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6vto")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 15.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_4u3hk"]
 interpolation_color_space = 1
@@ -70,10 +158,13 @@ zoom = Vector2(4, 4)
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="Watergun" type="Sprite2D" parent="."]
+[node name="Watergun" type="AnimatedSprite2D" parent="."]
 position = Vector2(9, 5)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_uj4co")
+sprite_frames = SubResource("SpriteFrames_r3486")
+animation = &"shoot"
+frame = 4
+frame_progress = 1.0
 
 [node name="ShootTimer" type="Timer" parent="."]
 
