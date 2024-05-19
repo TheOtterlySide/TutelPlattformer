@@ -18,6 +18,7 @@ public partial class Water : Area2D
 		if (body.IsInGroup("Player") && body is Player player)
 		{
 			player.IsInWater(true);
+			player.Reload();
 		}
 	}
 

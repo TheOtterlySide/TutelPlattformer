@@ -233,6 +233,7 @@ WaterSpeed = 100.0
 LandSpeed = 400.0
 DashCoolDown = 5.0
 DashPower = 10.0
+DeathHeight = 150.0
 BulletScene = ExtResource("2_xuceo")
 
 [node name="HUD" type="CanvasLayer" parent="."]

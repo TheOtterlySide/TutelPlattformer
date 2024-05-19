@@ -283,12 +283,24 @@ public partial class Player : CharacterBody2D
         CanShoot = true;
     }
 
+    public void Reload()
+    {
+        Ammunition = AmmoOG;
+        ActivateHUDAmmo(Ammunition);
+    }
     private void DeactivateHUDAmmo(int countActive)
     {
-
         for (int i = countActive; i < AmmoList.Count; i++)
         {
             AmmoList[i].Visible = false;
+        }
+    }
+
+    private void ActivateHUDAmmo(int countActive)
+    {
+        foreach (var ammoSprite in AmmoList)
+        {
+            ammoSprite.Visible = true;
         }
     }
 

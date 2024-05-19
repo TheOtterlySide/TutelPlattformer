@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvkkl3jvtvd63"]
+
+[ext_resource type="Script" path="res://SCRIPTS/Water.cs" id="1_8eaoh"]
+[ext_resource type="Texture2D" uid="uid://bhwepe5cjs8bn" path="res://ASSETS/Tiles/tile_0046.png" id="2_wdseo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fxj7"]
+
+[node name="Water" type="Area2D"]
+position = Vector2(116, -85)
+script = ExtResource("1_8eaoh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3fxj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wdseo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
