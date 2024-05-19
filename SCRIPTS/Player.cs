@@ -31,7 +31,7 @@ public partial class Player : CharacterBody2D
     private Timer DashTimer;
     private Timer ShootTimer;
     
-    private Sprite2D PlayerSprite;
+    private AnimatedSprite2D PlayerSprite;
     private AnimatedSprite2D Gun;
     
     private int DoubleJump;
@@ -68,7 +68,7 @@ public partial class Player : CharacterBody2D
         GunPosition = GetNode<Area2D>("GunPosition");
         DashTimer = GetNode<Timer>("DashTimer");
         ShootTimer = GetNode<Timer>("ShootTimer");
-        PlayerSprite = GetNode<Sprite2D>("Sprite2D");
+        PlayerSprite = GetNode<AnimatedSprite2D>("PlayerSprite");
         WallSlideParticle = GetNode<GpuParticles2D>("GPUParticles2D");
         WallSlideParticlePositionOG = WallSlideParticle.Position;
         DoubleJump = OGDoubleJump;
@@ -168,12 +168,14 @@ public partial class Player : CharacterBody2D
             velocity.Y = JumpVelocity;
             CanSlide = false;
             --DoubleJump;
+            PlayerSprite.Play("jump");
         }
         
         if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && DoubleJump >= 0)
         {
             velocity.Y = JumpVelocity;
             --DoubleJump;
+            PlayerSprite.Play("jump");
         }
 
         if (IsOnFloor())
@@ -196,6 +198,11 @@ public partial class Player : CharacterBody2D
         if (velocity.Length() > 0)
         {
             Gun.Play("move");
+
+            if (PlayerSprite.Animation != "jump")
+            {
+                PlayerSprite.Play("move");
+            }
         }
         
         if (velocity.Length() <= 0)
@@ -203,6 +210,10 @@ public partial class Player : CharacterBody2D
             if (!Gun.IsPlaying() || Gun.Animation == "move")
             {
                 Gun.Play("idle");
+            }
+            if (!PlayerSprite.IsPlaying() || PlayerSprite.Animation == "move")
+            {
+                PlayerSprite.Play("idle");
             }
         }
         

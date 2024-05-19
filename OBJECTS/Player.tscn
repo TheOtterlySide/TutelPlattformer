@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=35 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
@@ -9,6 +9,94 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcw6"]
 size = Vector2(27, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apkk2"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_almod"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwitb"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1130"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j8gg"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddkdy"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipwpb"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aodix"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc41s"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnagj"]
+atlas = ExtResource("3_w1dfp")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_676qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apkk2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_almod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwitb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1130")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j8gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddkdy")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipwpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aodix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc41s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnagj")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpiur"]
 atlas = ExtResource("4_uj4co")
@@ -149,8 +237,9 @@ BulletScene = ExtResource("2_xuceo")
 position = Vector2(-4.5, 5)
 shape = SubResource("RectangleShape2D_wgcw6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_w1dfp")
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_676qr")
+animation = &"jump"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
