@@ -297,4 +297,10 @@ public partial class Player : CharacterBody2D
         GlobalPosition = StartPos;
         GetTree().CallDeferred("reload_current_scene");
     }
+
+    private void GameEnd()
+    {
+        var t = ResourceLoader.Load<PackedScene>("res://LEVEL/Main Menu.tscn");
+        GetTree().ChangeSceneToPacked(t);
+    }
 }

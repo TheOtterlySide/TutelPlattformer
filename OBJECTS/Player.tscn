@@ -225,7 +225,7 @@ turbulence_noise_speed_random = 0.06
 turbulence_influence_min = 0.021
 turbulence_influence_max = 0.037
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(31, -32)
 safe_margin = 0.001
 script = ExtResource("1_xvgui")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=26 format=3 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
 [ext_resource type="Texture2D" uid="uid://w7no0uvrm5p" path="res://ASSETS/Tilemap/tilemap_new_softy_sand.png" id="1_arkxd"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://c24106yhirk14" path="res://ASSETS/Tilemap/tilemap_packed.png" id="11_yj0s5"]
 [ext_resource type="Texture2D" uid="uid://dmclfiky14n5j" path="res://ASSETS/Objects/vegetation_tree_palm1.png" id="16_mvdm2"]
 [ext_resource type="Texture2D" uid="uid://drdanxxnc621o" path="res://ASSETS/Objects/vegetatation_grass_small_row1_2.png" id="17_3o0tr"]
+[ext_resource type="Script" path="res://SCRIPTS/Goal.cs" id="18_6trlu"]
+[ext_resource type="Texture2D" uid="uid://efn4tukhclva" path="res://ASSETS/Tiles/tile_0342.png" id="19_5akmi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_enkkq"]
 texture = ExtResource("1_arkxd")
@@ -3876,6 +3878,8 @@ sources/2 = SubResource("TileSetAtlasSource_rqckj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fxj7"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3va8a"]
+
 [node name="Level 1" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -3977,7 +3981,18 @@ texture = ExtResource("16_mvdm2")
 position = Vector2(83, -32)
 texture = ExtResource("17_3o0tr")
 
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(208, -27)
+script = ExtResource("18_6trlu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("CircleShape2D_3va8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+texture = ExtResource("19_5akmi")
+
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_exited" from="Water" to="Water" method="_on_body_exited"]
 [connection signal="body_entered" from="Water2" to="Water2" method="_on_body_entered"]
 [connection signal="body_exited" from="Water2" to="Water2" method="_on_body_exited"]
+[connection signal="body_entered" from="Goal" to="Goal" method="_on_body_entered"]
