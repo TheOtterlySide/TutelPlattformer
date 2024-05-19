@@ -19,6 +19,7 @@ public partial class Player : CharacterBody2D
     [Export] private int OGDoubleJump;
     [Export] private int Ammunition;
     [Export] private int Life;
+    [Export] private float DeathHeight;
 
 
     [Export]
@@ -54,6 +55,7 @@ public partial class Player : CharacterBody2D
 
 
     private bool StateMovement;
+    private Vector2 StartPos;
 
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -178,7 +180,7 @@ public partial class Player : CharacterBody2D
             PlayerSprite.Play("jump");
         }
 
-        if (IsOnFloor())
+        if (IsOnFloor() || IsOnWall())
         {
             DoubleJump = OGDoubleJump;
         }
@@ -233,6 +235,10 @@ public partial class Player : CharacterBody2D
             }
         }
 
+        if (GetGlobalMousePosition().Y > DeathHeight)
+        {
+            GameOver();
+        }
 
         Velocity = velocity;
         MoveAndSlide();
@@ -284,5 +290,11 @@ public partial class Player : CharacterBody2D
         {
             AmmoList[i].Visible = false;
         }
+    }
+
+    private void GameOver()
+    {
+        GlobalPosition = StartPos;
+        GetTree().CallDeferred("reload_current_scene");
     }
 }
