@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlatformInfo>
+	<Platform Name="Mac" BasePlatform="Mac" Generator="2023.1.3.8471"/>
+	<RootPaths>
+		<ProjectRoot>../../Tutel</ProjectRoot>
+		<SourceFilesRoot>../../Tutel/.cache/Mac</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>../../Tutel/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DefaultAlign>16</DefaultAlign>
+	<Settings>
+		<AutoSoundBankDefinition>false</AutoSoundBankDefinition>
+		<CopyLooseStreamedMediaFiles>true</CopyLooseStreamedMediaFiles>
+		<SubFoldersForGeneratedFiles>false</SubFoldersForGeneratedFiles>
+		<RemoveUnusedGeneratedFiles>true</RemoveUnusedGeneratedFiles>
+		<SourceControlGeneratedFiles>false</SourceControlGeneratedFiles>
+		<GenerateHeaderFile>false</GenerateHeaderFile>
+		<GenerateContentTxtFile>true</GenerateContentTxtFile>
+		<GenerateMetadataXML>true</GenerateMetadataXML>
+		<GenerateMetadataJSON>false</GenerateMetadataJSON>
+		<GenerateAllBanksMetadata>true</GenerateAllBanksMetadata>
+		<GeneratePerBankMetadata>false</GeneratePerBankMetadata>
+		<UseSoundBankNames>true</UseSoundBankNames>
+		<AllowExceedingMaxSize>false</AllowExceedingMaxSize>
+		<MaxAttenuationInfo>false</MaxAttenuationInfo>
+		<EstimatedDurationInfo>false</EstimatedDurationInfo>
+		<PrintObjectGuid>false</PrintObjectGuid>
+		<PrintObjectPath>false</PrintObjectPath>
+	</Settings>
+	<FileHash>{291BEA03-B3BE-1085-2C97-4D92C8017998}</FileHash>
+</PlatformInfo>
