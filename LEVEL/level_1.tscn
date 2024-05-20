@@ -4117,12 +4117,12 @@ texture = ExtResource("17_3o0tr")
 
 [node name="Enemy" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(361, -29)
-Direction = Vector2(15, 2.08165e-12)
-Speed = 10.0
+Direction = Vector2(20, 2.08165e-12)
+Speed = 15.0
 
 [node name="Enemy2" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(673, -110)
-Direction = Vector2(15, 2.08165e-12)
+Direction = Vector2(-15, 2.08165e-12)
 Speed = 10.0
 
 [node name="Enemy3" parent="Enemy" instance=ExtResource("5_omkgj")]
@@ -4133,17 +4133,32 @@ Speed = 10.0
 [node name="Enemy7" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(1090, 195)
 Direction = Vector2(15, 2.08165e-12)
-Speed = 10.0
+Speed = 20.0
 
 [node name="Enemy8" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(1616, 147)
 Direction = Vector2(15, 2.08165e-12)
-Speed = 10.0
+Speed = 20.0
 
 [node name="Enemy9" parent="Enemy" instance=ExtResource("5_omkgj")]
-position = Vector2(1616, 147)
+position = Vector2(2179, 276)
 Direction = Vector2(15, 2.08165e-12)
-Speed = 10.0
+Speed = 20.0
+
+[node name="Enemy10" parent="Enemy" instance=ExtResource("5_omkgj")]
+position = Vector2(3042, 308)
+Direction = Vector2(15, 2.08165e-12)
+Speed = 20.0
+
+[node name="Enemy11" parent="Enemy" instance=ExtResource("5_omkgj")]
+position = Vector2(3925, 196)
+Direction = Vector2(15, 2.08165e-12)
+Speed = 20.0
+
+[node name="Enemy12" parent="Enemy" instance=ExtResource("5_omkgj")]
+position = Vector2(4821, -14)
+Direction = Vector2(15, 2.08165e-12)
+Speed = 20.0
 
 [node name="Enemy4" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(2088, -397)
@@ -4152,10 +4167,10 @@ Speed = 10.0
 
 [node name="Enemy5" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(2241, -398)
-Direction = Vector2(15, 2.08165e-12)
+Direction = Vector2(-15, 2.08165e-12)
 Speed = 10.0
 
 [node name="Enemy6" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(2638, -397)
 Direction = Vector2(15, 2.08165e-12)
-Speed = 10.0
+Speed = 15.0
