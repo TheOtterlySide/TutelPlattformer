@@ -304,7 +304,7 @@ public partial class Player : CharacterBody2D
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         GlobalPosition = StartPos;
         GetTree().CallDeferred("reload_current_scene");

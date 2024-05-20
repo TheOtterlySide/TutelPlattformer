@@ -44,7 +44,6 @@ renderer/rendering_method.mobile="gl_compatibility"
 
 common_user_settings/base_path="res://GeneratedSoundBanks"
 common_user_settings/startup_language="English(US)"
-common_user_settings/load_init_bank_at_startup=false
 common_user_settings/suspend_on_focus_loss=false
 common_user_settings/use_soundbank_names=true
 common_user_settings/engine_logging=false
@@ -91,3 +90,4 @@ ios_advanced_settings/audio_session_mode=0
 android_advanced_settings/audio_API=3
 android_advanced_settings/round_frame_size_to_hw_size=true
 linux_advanced_settings/audio_API=3
+common_user_settings/load_init_bank_at_startup=true

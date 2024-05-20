@@ -1,3 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
 	3157003241	Test			\Default Work Unit\Test	
 
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	295596173	fsm-team-escp-paradox	Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\.cache\Windows\SFX\fsm-team-escp-paradox_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Test\fsm-team-escp-paradox		40256924
+

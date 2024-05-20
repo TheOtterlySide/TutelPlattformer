@@ -13,6 +13,7 @@ script = ExtResource("1_8eaoh")
 shape = SubResource("RectangleShape2D_3fxj7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_wdseo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

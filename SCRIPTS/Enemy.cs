@@ -42,6 +42,10 @@ public partial class Enemy : Area2D
 		{
 			LifeHandling();
 		}
+		if (body.IsInGroup("Player") && body is Player player)
+		{
+			player.GameOver();
+		}
 	}
 
 	private void LifeHandling()

@@ -22,13 +22,23 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{02A197B9-B94C-2ACF-A6BF-9056454DCF94}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{919C7758-9A7F-9851-7553-B08E1117F551}">
 			<ShortName>MAIN</ShortName>
 			<Path>MAIN.bnk</Path>
+			<Media>
+				<File Id="295596173" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>fsm-team-escp-paradox.wav</ShortName>
+					<CachePath>SFX/fsm-team-escp-paradox_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
 			<Events>
-				<Event Id="3157003241" Name="Test"/>
+				<Event Id="3157003241" Name="Test">
+					<MediaRefs>
+						<MediaRef Id="295596173"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{C774E5CF-CE0A-D271-5578-2FDEA1708751}</FileHash>
+	<FileHash>{048D03AF-EC13-3554-1734-EE9E58957399}</FileHash>
 </SoundBanksInfo>

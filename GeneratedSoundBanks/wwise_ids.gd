@@ -2,7 +2,11 @@ class_name AK
 
 class EVENTS:
 
-	const _dict = {}
+	const TEST = 3157003241
+
+	const _dict = {
+		"Test": TEST
+	}
 
 class STATES:
 
@@ -23,9 +27,11 @@ class TRIGGERS:
 class BANKS:
 
 	const INIT = 1355168291
+	const MAIN = 3161908922
 
 	const _dict = {
-		"Init": INIT
+		"Init": INIT,
+		"MAIN": MAIN
 	}
 
 class BUSSES:
