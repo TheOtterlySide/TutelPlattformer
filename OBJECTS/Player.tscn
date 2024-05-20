@@ -233,7 +233,9 @@ WaterSpeed = 100.0
 LandSpeed = 400.0
 DashCoolDown = 5.0
 DashPower = 10.0
-DeathHeight = 150.0
+OGDoubleJump = 2
+Ammunition = 5
+DeathHeight = 400.0
 BulletScene = ExtResource("2_xuceo")
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -278,7 +280,7 @@ sprite_frames = SubResource("SpriteFrames_676qr")
 animation = &"jump"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 2.0
