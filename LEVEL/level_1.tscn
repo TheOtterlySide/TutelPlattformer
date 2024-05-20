@@ -4002,9 +4002,11 @@ unload_on = 3
 
 [node name="AkEvent2D" type="AkEvent2D" parent="AkBank"]
 event = {
-"id": 3157003241,
-"name": "Test"
+"id": 3991942870,
+"name": "Music"
 }
+trigger_on = 1
+stop_on = 3
 stop_fade_time = 10
 
 [node name="AkListener2D" type="AkListener2D" parent="."]

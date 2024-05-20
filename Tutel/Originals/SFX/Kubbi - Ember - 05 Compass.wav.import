@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7yhgplgcwntd"
+path="res://.godot/imported/Kubbi - Ember - 05 Compass.wav-1cfd7ef59322aee7d6a049c74c5b6a15.sample"
+
+[deps]
+
+source_file="res://Tutel/Originals/SFX/Kubbi - Ember - 05 Compass.wav"
+dest_files=["res://.godot/imported/Kubbi - Ember - 05 Compass.wav-1cfd7ef59322aee7d6a049c74c5b6a15.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{90B2F261-DCAE-47D9-A354-0A6676DF649C}" SchemaVersion="119">
 	<Effects>
-		<WorkUnit Name="Default Work Unit" ID="{90B2F261-DCAE-47D9-A354-0A6676DF649C}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{90B2F261-DCAE-47D9-A354-0A6676DF649C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Effect Name="New_Delay" ID="{C79325D4-6C3E-4A92-837E-BB557EC7FC04}" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3"/>
+			</ChildrenList>
+		</WorkUnit>
 	</Effects>
 </WwiseDocument>

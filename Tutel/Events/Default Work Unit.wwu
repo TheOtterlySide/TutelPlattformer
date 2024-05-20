@@ -3,12 +3,16 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{7C1E3A08-97CD-4341-94F0-C6CE08101CF2}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Test" ID="{7202D160-BBC8-4A06-A35D-E4DD5214944C}">
+				<Event Name="Music" ID="{7202D160-BBC8-4A06-A35D-E4DD5214944C}">
 					<ChildrenList>
 						<Action Name="" ID="{A500A1F8-592D-4C83-A2C7-E47EC7CDBCE1}" ShortID="162328798">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="7"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Test" ID="{6E58A2C4-767F-4624-AE94-6C93492139BD}" WorkUnitID="{EDEBEF00-AB22-4058-AD8A-032C5A554278}"/>
+									<ObjectRef Name="Background OST" ID="{8201E50B-B21A-447D-961C-572FB4C691F5}" WorkUnitID="{EDEBEF00-AB22-4058-AD8A-032C5A554278}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

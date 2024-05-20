@@ -3,9 +3,19 @@
 	<InteractiveMusic>
 		<WorkUnit Name="Default Work Unit" ID="{EDEBEF00-AB22-4058-AD8A-032C5A554278}" PersistMode="Standalone">
 			<ChildrenList>
-				<MusicSegment Name="Test" ID="{6E58A2C4-767F-4624-AE94-6C93492139BD}" ShortID="266891727">
+				<MusicSegment Name="Background OST" ID="{8201E50B-B21A-447D-961C-572FB4C691F5}" ShortID="572075163">
 					<PropertyList>
-						<Property Name="EndPosition" Type="Real64" Value="228213.310657596"/>
+						<Property Name="EndPosition" Type="Real64" Value="311021.020408163"/>
+						<Property Name="Highpass" Type="int16">
+							<ValueList>
+								<Value>10</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-17</Value>
+							</ValueList>
+						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -16,14 +26,14 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<MusicTrack Name="fsm-team-escp-paradox" ID="{2701EE76-766F-440E-82DB-E1DCA9D6583C}" ShortID="947343323">
+						<MusicTrack Name="Kubbi - Ember - 05 Compass" ID="{08D548DE-32B5-4F5B-AD2C-905303F80F80}" ShortID="527451899">
 							<ReferenceList>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CADDA4A1-AB90-4E0E-9ED1-7D8BBF594DD3}"/>
 								</Reference>
 								<Reference Name="TransitionRoot">
 									<Custom>
-										<MusicTransition Name="Root" ID="{CEE86A15-7B6F-4AA2-9EB3-76393FF6492B}">
+										<MusicTransition Name="Root" ID="{C25C36B4-80ED-4917-85A4-D19EE539ED3E}">
 											<PropertyList>
 												<Property Name="IsFolder" Type="bool" Value="True"/>
 											</PropertyList>
@@ -33,11 +43,11 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="fsm-team-escp-paradox" ID="{3D0EAB76-5313-461E-878F-A38DF76BD095}">
+								<AudioFileSource Name="Kubbi - Ember - 05 Compass" ID="{C3AA4C75-6F08-4B96-8E3F-92D7E6D4CD89}">
 									<Language>SFX</Language>
-									<AudioFile>fsm-team-escp-paradox.wav</AudioFile>
+									<AudioFile>Kubbi - Ember - 05 Compass.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="295596173"/>
+										<MediaID ID="134339269"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
@@ -45,18 +55,18 @@
 								<ObjectList Name="Sequences">
 									<Reference>
 										<Local>
-											<MusicTrackSequence Name="" ID="{8BE57DE9-B9E3-4374-8D36-A48C881E6C3E}">
+											<MusicTrackSequence Name="" ID="{0E153EFF-F7F7-49BE-8195-42C0C12449D4}">
 												<ObjectLists>
 													<ObjectList Name="Clips">
 														<Reference>
 															<Local>
-																<MusicClip Name="fsm-team-escp-paradox" ID="{AF6650EE-25CC-4B85-A2D7-BA807B9037F7}">
+																<MusicClip Name="Kubbi - Ember - 05 Compass" ID="{615FEF46-2E8A-47A7-BE62-652F915503DB}">
 																	<PropertyList>
-																		<Property Name="EndTrimOffset" Type="Real64" Value="228213.310657596"/>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="311021.020408163"/>
 																		<Property Name="FadeInMode" Type="int16" Value="0"/>
 																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																	</PropertyList>
-																	<AudioSourceRef Name="fsm-team-escp-paradox" ID="{3D0EAB76-5313-461E-878F-A38DF76BD095}"/>
+																	<AudioSourceRef Name="Kubbi - Ember - 05 Compass" ID="{C3AA4C75-6F08-4B96-8E3F-92D7E6D4CD89}"/>
 																</MusicClip>
 															</Local>
 														</Reference>
@@ -73,17 +83,30 @@
 						<ObjectList Name="Cues">
 							<Reference>
 								<Local>
-									<MusicCue Name="Entry Cue" ID="{6844102A-AA1F-43F4-9E51-1F9AB0EE8F0B}"/>
+									<MusicCue Name="Entry Cue" ID="{5A18F41D-DBEB-4F3D-93D6-8CCE7905EDFE}"/>
 								</Local>
 							</Reference>
 							<Reference>
 								<Local>
-									<MusicCue Name="Exit Cue" ID="{858AD801-78BE-4A9D-9813-189986839708}">
+									<MusicCue Name="Exit Cue" ID="{9F6B8C08-8FC9-4FC2-AAD4-CAE14EE1F3A4}">
 										<PropertyList>
 											<Property Name="CueType" Type="int16" Value="1"/>
-											<Property Name="TimeMs" Type="Real64" Value="13041.7391304348"/>
+											<Property Name="TimeMs" Type="Real64" Value="311021.020408163"/>
 										</PropertyList>
 									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+						<ObjectList Name="Effects">
+							<Reference>
+								<Local>
+									<EffectSlot Name="" ID="{1FBF8304-4541-4A07-A1D0-CD1CF6E76082}" ShortID="700481874">
+										<ReferenceList>
+											<Reference Name="Effect" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+												<ObjectRef Name="Hard_Knee_Minus_3dB_RMS" ID="{D083BAE5-F9EF-426B-A311-D9DF8DFE8807}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+											</Reference>
+										</ReferenceList>
+									</EffectSlot>
 								</Local>
 							</Reference>
 						</ObjectList>

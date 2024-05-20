@@ -2,10 +2,10 @@ class_name AK
 
 class EVENTS:
 
-	const TEST = 3157003241
+	const MUSIC = 3991942870
 
 	const _dict = {
-		"Test": TEST
+		"Music": MUSIC
 	}
 
 class STATES:

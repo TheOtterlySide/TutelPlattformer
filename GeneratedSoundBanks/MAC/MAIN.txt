@@ -1,6 +1,9 @@
 Event	ID	Name			Wwise Object Path	Notes
-	3157003241	Test			\Default Work Unit\Test	
+	3991942870	Music			\Default Work Unit\Music	
+
+Effect plug-ins	ID	Name	Type				Notes
+	3796564934	Hard_Knee_Minus_3dB_RMS	Wwise Compressor			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	295596173	fsm-team-escp-paradox	Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\.cache\Mac\SFX\fsm-team-escp-paradox_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Test\fsm-team-escp-paradox		40256924
+	134339269	Kubbi - Ember - 05 Compass	Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\.cache\Mac\SFX\Kubbi - Ember - 05 Compass_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Background OST\Kubbi - Ember - 05 Compass		54864204
 

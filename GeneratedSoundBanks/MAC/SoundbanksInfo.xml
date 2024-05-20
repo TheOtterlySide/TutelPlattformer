@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{D326F752-7CA2-0A14-FDB1-63ECE89D0199}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{A5EE1793-12D8-F6AD-DD9F-D3321ED59937}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -22,23 +22,33 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{919C7758-9A7F-9851-7553-B08E1117F551}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{ACFEAEA7-07CD-9C5F-A33F-8DD0E70A361D}">
 			<ShortName>MAIN</ShortName>
 			<Path>MAIN.bnk</Path>
 			<Media>
-				<File Id="295596173" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>fsm-team-escp-paradox.wav</ShortName>
-					<CachePath>SFX/fsm-team-escp-paradox_FBC78EF0.wem</CachePath>
+				<File Id="134339269" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Kubbi - Ember - 05 Compass.wav</ShortName>
+					<CachePath>SFX/Kubbi - Ember - 05 Compass_FBC78EF0.wem</CachePath>
 				</File>
 			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="3796564934" Name="Hard_Knee_Minus_3dB_RMS" LibName="Wwise Compressor" LibId="7077891"/>
+				</ShareSets>
+			</Plugins>
 			<Events>
-				<Event Id="3157003241" Name="Test">
+				<Event Id="3991942870" Name="Music">
 					<MediaRefs>
-						<MediaRef Id="295596173"/>
+						<MediaRef Id="134339269"/>
 					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="3796564934"/>
+						</ShareSets>
+					</PluginRefs>
 				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{98D2DB34-1EA4-B0E1-2745-DA671E02CDBE}</FileHash>
+	<FileHash>{E4700D64-9603-DDCF-7345-33D94D531B5E}</FileHash>
 </SoundBanksInfo>
