@@ -29,6 +29,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Tutel"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/Wwise/plugin.cfg")
+
 [input]
 
 Dash={
