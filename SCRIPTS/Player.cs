@@ -1,11 +1,18 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Godot.Collections;
 
 public partial class Player : CharacterBody2D
 {
+    enum State
+    {
+        Idle,
+        Walk,
+        Jump,
+        Shoot
+    };
+
+    private State CurrentState;
+    
     private float Speed;
     [Export] private const float JumpVelocity = -200.0f;
 
@@ -76,6 +83,8 @@ public partial class Player : CharacterBody2D
         DoubleJump = OGDoubleJump;
         AmmoOG = Ammunition;
 
+        CurrentState = State.Idle;
+
         HUDAmmo1 = GetNode<Sprite2D>("HUD/1");
         HUDAmmo2 = GetNode<Sprite2D>("HUD/2");
         HUDAmmo3 = GetNode<Sprite2D>("HUD/3");
@@ -83,7 +92,7 @@ public partial class Player : CharacterBody2D
         HUDAmmo5 = GetNode<Sprite2D>("HUD/5");
         SetupHUD();
     }
-
+    
     private void SetupHUD()
     {
         AmmoList.Add(HUDAmmo1);
