@@ -6,17 +6,18 @@ public partial class StateMachine : Node
 {
 	[Export] public NodePath initialState;
     
-	private Dictionary<string, State> _states;
-	private State _currentState;
+	private Dictionary<string, State> _states = new Dictionary<string, State>();
+	private State _currentState = new State();
     
 	public override void _Ready()
 	{
-		_states = new Dictionary<string, State>();
-		foreach (Node node in GetChildren()) {
-			if (node is State s) {
+		foreach (Node node in GetChildren()) 
+		{
+			if (node is State s) 
+			{
 				_states[node.Name] = s;
 				s.fsm = this;
-				s.Ready();
+				s.MakeReady();
 				s.Exit(); // reset
 			}
 		}
@@ -41,7 +42,8 @@ public partial class StateMachine : Node
 		@event.Dispose();
 	}
     
-	public void TransitionTo(string key) {
+	public void TransitionTo(string key) 
+	{
 		if (!_states.ContainsKey(key) || _states[key] == _currentState)
 			return;
 		_currentState.Exit();

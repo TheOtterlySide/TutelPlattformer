@@ -3992,14 +3992,6 @@ OGDoubleJump = 1
 [node name="Goal" parent="." instance=ExtResource("18_tgkx8")]
 position = Vector2(5224, -506)
 
-[node name="AkBank2" type="AkBank" parent="."]
-bank = {
-"id": 1355168291,
-"name": "Init"
-}
-load_on = 1
-unload_on = 3
-
 [node name="AkBank" type="AkBank" parent="."]
 bank = {
 "id": 3161908922,

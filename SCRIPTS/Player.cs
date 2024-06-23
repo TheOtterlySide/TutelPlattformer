@@ -64,12 +64,14 @@ public partial class Player : CharacterBody2D
     private bool StateMovement;
     private Vector2 StartPos;
 
+    private StateMachine sfm;
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
     public override void _Ready()
     {
+        sfm = new StateMachine();
         Speed = LandSpeed;
         BulletScene = (PackedScene)GD.Load("res://OBJECTS/Bullet.tscn");
         Gun = GetNode<AnimatedSprite2D>("Watergun");
@@ -224,7 +226,7 @@ public partial class Player : CharacterBody2D
             }
             if (!PlayerSprite.IsPlaying() || PlayerSprite.Animation == "move")
             {
-                PlayerSprite.Play("idle");
+                sfm.TransitionTo("IDLE");
             }
         }
         

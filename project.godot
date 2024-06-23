@@ -21,7 +21,6 @@ WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 [display]
 
-window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="viewport"
 

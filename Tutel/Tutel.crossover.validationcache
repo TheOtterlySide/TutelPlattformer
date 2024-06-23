@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ValidationCache Version="1" SchemaVersion="119">
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Virtual Acoustics\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
-	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Tutel.wproj" DateLow="1716191396" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Tutel.wproj" DateLow="1716212055" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Tutel.crossover.wsettings" DateLow="1716212056" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Triggers\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Switches\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\States\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
-	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\SoundBanks\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\SoundBanks\Default Work Unit.wwu" DateLow="1716200973" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Queries\Factory Queries.wwu" DateLow="1715148358" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Queries\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Presets\Factory Spatial Audio.wwu" DateLow="1715148358" DateHigh="0"/>
@@ -15,11 +16,11 @@
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Mixing Sessions\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Metadata\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
-	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1716200973" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Game Parameters\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
-	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Events\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
-	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Effects\Factory Effects.wwu" DateLow="1715148358" DateHigh="0"/>
-	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Effects\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Events\Default Work Unit.wwu" DateLow="1716201058" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Effects\Factory Effects.wwu" DateLow="1716200973" DateHigh="0"/>
+	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Effects\Default Work Unit.wwu" DateLow="1716200973" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1715148358" DateHigh="0"/>
 	<ValidationCacheItem File="Y:\Developing\GAMEDEV\TutelPlattformer\Tutel\Conversion Settings\Default Work Unit.wwu" DateLow="1716191396" DateHigh="0"/>

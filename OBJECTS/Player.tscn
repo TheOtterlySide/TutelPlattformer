@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=46 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bkg55x5caxu7w" path="res://ASSETS/Characters/Player/HUD_Ammo_TOP.png" id="6_2o4kx"]
 [ext_resource type="Texture2D" uid="uid://bt6c8eqy75nma" path="res://ASSETS/Characters/Player/HUD_Ammo.png" id="6_gmy8d"]
 [ext_resource type="Texture2D" uid="uid://d1p26pdj2j6wi" path="res://ASSETS/Characters/Player/HUD.png" id="7_wqqvr"]
+[ext_resource type="Script" path="res://SCRIPTS/StateMachine.cs" id="9_i6h4j"]
+[ext_resource type="Script" path="res://SCRIPTS/STATES/IDLE.cs" id="10_ia81d"]
+[ext_resource type="Script" path="res://SCRIPTS/STATES/SHOOTING.cs" id="11_6ypan"]
+[ext_resource type="Script" path="res://SCRIPTS/STATES/JUMP.cs" id="12_lnhu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcw6"]
 size = Vector2(27, 38)
@@ -411,6 +415,22 @@ anim_player = NodePath("../AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_mnsc4")
 }
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("9_i6h4j")
+initialState = NodePath("IDLE")
+
+[node name="IDLE" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player")]
+script = ExtResource("10_ia81d")
+Player = NodePath("../..")
+
+[node name="SHOOTING" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player")]
+script = ExtResource("11_6ypan")
+Player = NodePath("../..")
+
+[node name="JUMP" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player")]
+script = ExtResource("12_lnhu7")
+Player = NodePath("../..")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
