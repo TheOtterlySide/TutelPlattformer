@@ -86,17 +86,18 @@ public partial class Player : CharacterBody2D
         AmmoOG = Ammunition;
 
         CurrentState = State.Idle;
-
-        HUDAmmo1 = GetNode<Sprite2D>("HUD/1");
-        HUDAmmo2 = GetNode<Sprite2D>("HUD/2");
-        HUDAmmo3 = GetNode<Sprite2D>("HUD/3");
-        HUDAmmo4 = GetNode<Sprite2D>("HUD/4");
-        HUDAmmo5 = GetNode<Sprite2D>("HUD/5");
+        
         SetupHUD();
     }
     
     private void SetupHUD()
     {
+        HUDAmmo1 = GetNode<Sprite2D>("HUD/1");
+        HUDAmmo2 = GetNode<Sprite2D>("HUD/2");
+        HUDAmmo3 = GetNode<Sprite2D>("HUD/3");
+        HUDAmmo4 = GetNode<Sprite2D>("HUD/4");
+        HUDAmmo5 = GetNode<Sprite2D>("HUD/5");
+        
         AmmoList.Add(HUDAmmo1);
         AmmoList.Add(HUDAmmo2);
         AmmoList.Add(HUDAmmo3);
@@ -125,22 +126,12 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionPressed("ui_left"))
         {
-            PlayerSprite.FlipH = true;
-            Gun.FlipH = true;
-            StateMovement = true;
-            Gun.Position = GunPosition.Position;
-            WallSlideParticle.Position = GunPosition.Position;
-            BulletDirection = Vector2.Left;
+            LeftMovementLogic();
         }
         
         if (Input.IsActionPressed("ui_right"))
         {
-            PlayerSprite.FlipH = false;
-            Gun.FlipH = false;
-            StateMovement = true;
-            Gun.Position = GunPositionOG;
-            WallSlideParticle.Position = WallSlideParticlePositionOG;
-            BulletDirection = Vector2.Right;
+            RightMovementLogic();
         }
 
         if (velocity == Vector2.Zero)
@@ -253,6 +244,26 @@ public partial class Player : CharacterBody2D
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    private void RightMovementLogic()
+    {
+        PlayerSprite.FlipH = false;
+        Gun.FlipH = false;
+        StateMovement = true;
+        Gun.Position = GunPositionOG;
+        WallSlideParticle.Position = WallSlideParticlePositionOG;
+        BulletDirection = Vector2.Right;
+    }
+
+    private void LeftMovementLogic()
+    {
+        PlayerSprite.FlipH = true;
+        Gun.FlipH = true;
+        StateMovement = true;
+        Gun.Position = GunPosition.Position;
+        WallSlideParticle.Position = GunPosition.Position;
+        BulletDirection = Vector2.Left;
     }
 
     public void IsInWater(bool status)

@@ -6,7 +6,7 @@ public partial class StateMachine : Node
 {
 	[Export] public NodePath initialState;
     
-	private Dictionary<string, State> _states = new Dictionary<string, State>();
+	private Dictionary<string, State> _states = new();
 	private State _currentState = new State();
     
 	public override void _Ready()

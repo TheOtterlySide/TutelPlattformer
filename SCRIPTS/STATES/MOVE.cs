@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SHOOTING : State
+public partial class MOVE : State
 {
 	[Export]
 	private Player Player;
@@ -12,14 +12,14 @@ public partial class SHOOTING : State
 	{
 		PlayerSprite = Player.GetNode<AnimatedSprite2D>("PlayerSprite");
 	}
-    
+	
 	public override void Enter() { 
-		PlayerSprite.Play("shoot");
+		PlayerSprite.Play("move");
 	}
     
 	public override void Exit() 
 	{
             
 	}
-
+	
 }
