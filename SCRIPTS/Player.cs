@@ -6,9 +6,13 @@ public partial class Player : CharacterBody2D
     enum State
     {
         Idle,
-        Walk,
+        Move,
         Jump,
-        Shoot
+        Shoot,
+        JumpJump,
+        Slide,
+        Dash,
+        Fall
     };
 
     private State CurrentState;
@@ -137,19 +141,22 @@ public partial class Player : CharacterBody2D
         if (velocity == Vector2.Zero)
         {
             StateMovement = false;
+            CurrentState = State.Idle;
         }
 
         // Add the gravity.
-        if (!IsOnFloor())
+        if (CurrentState == State.Move)
         {
             velocity.Y += gravity * (float)delta;
         }
 
-        if (IsOnWall() && !IsOnFloor())
+        if (CurrentState == State.Slide)
         {
             gravity = 200;
             CanSlide = true;
             WallSlideParticle.Emitting = true;
+            
+            sfm.TransitionTo("SLIDE");
         }
         else
         {
@@ -203,10 +210,7 @@ public partial class Player : CharacterBody2D
         {
             Gun.Play("move");
 
-            if (PlayerSprite.Animation != "jump")
-            {
-                PlayerSprite.Play("move");
-            }
+            CurrentState = State.Move;
         }
         
         if (velocity.Length() <= 0)
@@ -240,6 +244,32 @@ public partial class Player : CharacterBody2D
         if (GetGlobalMousePosition().Y > DeathHeight)
         {
             GameOver();
+        }
+
+        switch (CurrentState)
+        {
+            case State.Idle:
+                break;
+            case State.Move:
+                sfm.TransitionTo("MOVE");
+break;
+            case State.Dash:
+                sfm.TransitionTo("DASH");
+                break;
+            case State.Jump:
+                sfm.TransitionTo("JUMP");
+                break;
+            case State.JumpJump:
+                sfm.TransitionTo("JUMPJUMP");
+                break;
+            case State.Shoot:
+                sfm.TransitionTo("SHOOT");
+                break;
+            case State.Fall:
+                sfm.TransitionTo("FALL");
+                break;
+            default:
+                break;
         }
 
         Velocity = velocity;
