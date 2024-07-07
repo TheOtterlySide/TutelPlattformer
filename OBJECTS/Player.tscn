@@ -63,6 +63,16 @@ region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_676qr"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_apkk2")
@@ -91,6 +101,11 @@ animations = [{
 "name": &"jump",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"jumpjump",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ipwpb")
@@ -106,6 +121,16 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"slide",
 "speed": 5.0
 }]
 
@@ -377,7 +402,7 @@ shape = SubResource("RectangleShape2D_wgcw6")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_676qr")
-animation = &"idle"
+animation = &"slide"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

@@ -13,8 +13,9 @@ public partial class FALL : State
 		PlayerSprite = Player.GetNode<AnimatedSprite2D>("PlayerSprite");
 	}
 	
-	public override void Enter() { 
-		PlayerSprite.Play("move");
+	public override void Enter() 
+	{ 
+		PlayerSprite.Play("fall");
 	}
     
 	public override void Exit() 

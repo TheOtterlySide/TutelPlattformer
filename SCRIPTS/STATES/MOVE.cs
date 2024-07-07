@@ -13,7 +13,8 @@ public partial class MOVE : State
 		PlayerSprite = Player.GetNode<AnimatedSprite2D>("PlayerSprite");
 	}
 	
-	public override void Enter() { 
+	public override void Enter() 
+	{ 
 		PlayerSprite.Play("move");
 	}
     

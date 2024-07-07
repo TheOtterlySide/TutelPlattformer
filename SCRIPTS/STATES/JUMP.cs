@@ -13,8 +13,8 @@ public partial class JUMP : State
 		PlayerSprite = Player.GetNode<AnimatedSprite2D>("PlayerSprite");
 	}
 	
-	public override void Enter() { 
-		GD.Print("State hit");	
+	public override void Enter() 
+	{ 
 		PlayerSprite.Play("jump");
 	}
     
