@@ -1,13 +1,14 @@
 using Godot;
-using System;
 using Godot.Collections;
+
+namespace Tutel.SCRIPTS;
 
 public partial class StateMachine : Node
 {
 	[Export] public NodePath initialState;
     
-	private Dictionary<string, State> _states = new();
-	private State _currentState = new State();
+	private static Dictionary<string, State> _states = new();
+	private State _currentState = new();
     
 	public override void _Ready()
 	{

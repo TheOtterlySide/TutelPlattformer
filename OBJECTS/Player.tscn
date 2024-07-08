@@ -402,7 +402,7 @@ shape = SubResource("RectangleShape2D_wgcw6")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_676qr")
-animation = &"slide"
+animation = &"jump"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

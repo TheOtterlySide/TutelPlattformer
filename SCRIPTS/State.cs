@@ -3,7 +3,7 @@ using System;
 
 public partial class State : Node
 {
-	public StateMachine fsm;
+	public Tutel.SCRIPTS.StateMachine fsm;
 	
 	public virtual void Enter() {}
 	public virtual void Exit() {}
