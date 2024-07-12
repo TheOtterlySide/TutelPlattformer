@@ -229,6 +229,7 @@ colors = PackedColorArray(0, 0, 0, 0.733333, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8bg5i"]
 gradient = SubResource("Gradient_4u3hk")
+width = 986
 
 [sub_resource type="Curve" id="Curve_7eqrr"]
 max_value = 3.0
@@ -247,14 +248,13 @@ inherit_velocity_ratio = 0.36
 spread = 17.697
 gravity = Vector3(2.08165e-12, -100, 2.08165e-12)
 scale_min = 0.5
-scale_max = 0.75
-scale_over_velocity_min = 230.34
-scale_over_velocity_max = 235.96
+scale_over_velocity_min = 584.27
+scale_over_velocity_max = 584.27
 scale_over_velocity_curve = SubResource("CurveTexture_g1ryl")
 color_ramp = SubResource("GradientTexture1D_8bg5i")
 turbulence_enabled = true
-turbulence_noise_strength = 2.89
-turbulence_noise_scale = 2.158
+turbulence_noise_strength = 3.63
+turbulence_noise_scale = 2.369
 turbulence_noise_speed_random = 0.06
 turbulence_influence_min = 0.021
 turbulence_influence_max = 0.037

@@ -21,7 +21,7 @@ public partial class Player : CharacterBody2D
 
 
     private float Speed;
-    [Export] private const float JumpVelocity = -200.0f;
+    [Export] private const float JumpVelocity = -300.0f;
 
     [Export] private bool IsWater;
 
@@ -146,27 +146,25 @@ public partial class Player : CharacterBody2D
             NewState = State.Idle;
         }
 
-        // if (velocity.X == 0)
-        // {
-        //     StateMovement = false;
-        //     NewState = State.Idle;
-        // }
-
         // Add the gravity.
         velocity.Y += Gravity * (float)delta;
 
         //Wallslide
-        if (NewState == State.Slide)
+        if (CurrentState == State.Slide && IsOnWall())
         {
-            WallSlideLogic(true);
+            WallSlideLogic();
         }
-        else
+
+        if (IsOnFloor() && velocity.X <= 0 && (CurrentState == State.Slide || CurrentState == State.Fall))
         {
-            WallSlideLogic(false);
+                CanSlide = false;
+                Gravity = 300;
+                WallSlideParticle.Emitting = false;
+                NewState = State.Idle;
         }
 
         //Wallslide Jump
-        if (NewState == State.Slide && Input.IsActionJustPressed("ui_accept"))
+        if (CurrentState == State.Slide && Input.IsActionJustPressed("ui_accept"))
         {
             WallSlideJumpLogic();
         }
@@ -177,7 +175,7 @@ public partial class Player : CharacterBody2D
             velocity.Y = JumpVelocity;
             JumpLogic();
         }
-
+        
         if (Input.IsActionJustReleased("ui_accept"))
         {
             NewState = State.Fall;
@@ -245,6 +243,7 @@ public partial class Player : CharacterBody2D
                 sfm.TransitionTo("IDLE");
                 Gun.Play("idle");
                 break;
+            
             case State.Move:
                 if (CurrentState == State.Idle)
                 {
@@ -253,6 +252,7 @@ public partial class Player : CharacterBody2D
                 }
 
                 break;
+            
             case State.Dash:
                 if (CurrentState == State.Move)
                 {
@@ -261,10 +261,12 @@ public partial class Player : CharacterBody2D
                 }
 
                 break;
+            
             case State.Jump:
                 SetCurrentState();
                 sfm.TransitionTo("JUMP");
                 break;
+            
             case State.JumpJump:
                 if (CurrentState == State.Jump)
                 {
@@ -273,11 +275,13 @@ public partial class Player : CharacterBody2D
                 }
 
                 break;
+            
             case State.Shoot:
                 SetCurrentState();
                 Gun.Play("shoot");
                 sfm.TransitionTo("SHOOT");
                 break;
+            
             case State.Fall:
                 if (CurrentState == State.Jump || CurrentState == State.JumpJump)
                 {
@@ -286,6 +290,7 @@ public partial class Player : CharacterBody2D
                 }
 
                 break;
+            
             case State.Slide:
                 if (CurrentState == State.Jump || CurrentState == State.JumpJump)
                 {
@@ -357,25 +362,15 @@ public partial class Player : CharacterBody2D
         PlayerSprite.FlipH = true;
         Gravity = 300;
         WallSlideParticle.Emitting = false;
+        NewState = State.Jump;
     }
 
-    private void WallSlideLogic(bool onWall)
+    private void WallSlideLogic()
     {
-        if (onWall)
-        {
             Gravity = 200;
             CanSlide = true;
             WallSlideParticle.Emitting = true;
-
-            sfm.TransitionTo("SLIDE");
-        }
-
-        else
-        {
-            CanSlide = false;
-            Gravity = 300;
-            WallSlideParticle.Emitting = false;
-        }
+            NewState = State.Slide;
     }
 
     #endregion
