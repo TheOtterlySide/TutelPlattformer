@@ -103,7 +103,7 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
-"name": &"jumpjump",
+"name": &"jump2",
 "speed": 5.0
 }, {
 "frames": [{

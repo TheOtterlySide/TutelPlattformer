@@ -19,36 +19,35 @@ public partial class Player : CharacterBody2D
     private State NewState;
     private State CurrentState;
 
-    
+
     private float Speed;
     [Export] private const float JumpVelocity = -200.0f;
 
     [Export] private bool IsWater;
-    
+
     [Export] private float WaterSpeed;
     [Export] private float LandSpeed;
     [Export] private float DashCoolDown;
     [Export] private float DashPower;
-    
+
     [Export] private int OGDoubleJump;
     [Export] private int Ammunition;
     [Export] private int Life;
     [Export] private float DeathHeight;
 
 
-    [Export]
-    public PackedScene BulletScene { get; set; }
-    
+    [Export] public PackedScene BulletScene { get; set; }
+
     private bool CanDash = true;
     private bool CanShoot = true;
     private bool CanSlide;
-    
+
     private Timer DashTimer;
     private Timer ShootTimer;
-    
+
     private AnimatedSprite2D PlayerSprite;
     private AnimatedSprite2D Gun;
-    
+
     private int DoubleJump;
 
     private Sprite2D HUDAmmo1;
@@ -94,10 +93,10 @@ public partial class Player : CharacterBody2D
 
         NewState = State.Idle;
         CurrentState = State.Idle;
-        
+
         SetupHUD();
     }
-    
+
     private void SetupHUD()
     {
         HUDAmmo1 = GetNode<Sprite2D>("HUD/1");
@@ -105,13 +104,13 @@ public partial class Player : CharacterBody2D
         HUDAmmo3 = GetNode<Sprite2D>("HUD/3");
         HUDAmmo4 = GetNode<Sprite2D>("HUD/4");
         HUDAmmo5 = GetNode<Sprite2D>("HUD/5");
-        
+
         AmmoList.Add(HUDAmmo1);
         AmmoList.Add(HUDAmmo2);
         AmmoList.Add(HUDAmmo3);
         AmmoList.Add(HUDAmmo4);
         AmmoList.Add(HUDAmmo5);
-        
+
         foreach (var node in AmmoList)
         {
             node.Visible = true;
@@ -146,58 +145,54 @@ public partial class Player : CharacterBody2D
         {
             NewState = State.Idle;
         }
-        
-        if (velocity.X == 0)
-        {
-            StateMovement = false;
-            NewState = State.Idle;
-        }
+
+        // if (velocity.X == 0)
+        // {
+        //     StateMovement = false;
+        //     NewState = State.Idle;
+        // }
 
         // Add the gravity.
         velocity.Y += Gravity * (float)delta;
-        
 
-        
         //Wallslide
         if (NewState == State.Slide)
         {
-            Gravity = 200;
-            CanSlide = true;
-            WallSlideParticle.Emitting = true;
-            
-            sfm.TransitionTo("SLIDE");
+            WallSlideLogic(true);
         }
         else
         {
-            CanSlide = false;
-            Gravity = 300;
-            WallSlideParticle.Emitting = false;
+            WallSlideLogic(false);
         }
 
         //Wallslide Jump
         if (NewState == State.Slide && Input.IsActionJustPressed("ui_accept"))
         {
-            CanSlide = false;
-            PlayerSprite.FlipH = true;
-            Gravity = 300;
-            WallSlideParticle.Emitting = false;
+            WallSlideJumpLogic();
         }
 
         // Handle Jump.
         if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
-            CanSlide = false;
-            --DoubleJump;
-            NewState = State.Jump;
+            JumpLogic();
         }
-        
+
+        if (Input.IsActionJustReleased("ui_accept"))
+        {
+            NewState = State.Fall;
+        }
+
+        if (Input.IsActionJustReleased("ui_accept") && IsOnFloor())
+        {
+            NewState = State.Idle;
+        }
+
         // JumpJump
         if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && DoubleJump >= 0)
         {
             velocity.Y = JumpVelocity;
-            --DoubleJump;
-            NewState = State.JumpJump;
+            JumpJumpLogic();
         }
 
         if (IsOnFloor() || IsOnWall())
@@ -217,31 +212,23 @@ public partial class Player : CharacterBody2D
             }
         }
 
-        // if (velocity.Length() > 0)
-        // {
-        //     Gun.Play("move");
-        //     NewState = State.Move;
-        // }
-        
         if (velocity.Length() <= 0)
         {
             NewState = State.Idle;
         }
-        
+
         if (Input.IsActionPressed("Fire") && CanShoot)
         {
             NewState = State.Shoot;
             Fire(delta, direction);
         }
-        
+
         if (Input.IsActionPressed("Dash"))
         {
             if (CanDash)
             {
                 velocity.X = PlayerDash(velocity, direction).X;
-                CanDash = false;
-                NewState = State.Dash;
-                DashTimer.Start();
+                DashLogic();
             }
         }
 
@@ -250,6 +237,7 @@ public partial class Player : CharacterBody2D
             GameOver();
         }
 
+        GD.Print(CurrentState);
         switch (NewState)
         {
             case State.Idle:
@@ -258,8 +246,12 @@ public partial class Player : CharacterBody2D
                 Gun.Play("idle");
                 break;
             case State.Move:
-                SetCurrentState();
-                sfm.TransitionTo("MOVE");
+                if (CurrentState == State.Idle)
+                {
+                    SetCurrentState();
+                    sfm.TransitionTo("MOVE");
+                }
+
                 break;
             case State.Dash:
                 if (CurrentState == State.Move)
@@ -267,6 +259,7 @@ public partial class Player : CharacterBody2D
                     SetCurrentState();
                     sfm.TransitionTo("DASH");
                 }
+
                 break;
             case State.Jump:
                 SetCurrentState();
@@ -278,6 +271,7 @@ public partial class Player : CharacterBody2D
                     SetCurrentState();
                     sfm.TransitionTo("JUMPJUMP");
                 }
+
                 break;
             case State.Shoot:
                 SetCurrentState();
@@ -290,6 +284,7 @@ public partial class Player : CharacterBody2D
                     SetCurrentState();
                     sfm.TransitionTo("FALL");
                 }
+
                 break;
             case State.Slide:
                 if (CurrentState == State.Jump || CurrentState == State.JumpJump)
@@ -297,12 +292,12 @@ public partial class Player : CharacterBody2D
                     if (IsOnWall())
                     {
                         SetCurrentState();
-                        sfm.TransitionTo("SLIDE");   
+                        sfm.TransitionTo("SLIDE");
                     }
                 }
 
                 break;
-                
+
             default:
                 sfm.TransitionTo("IDLE");
                 break;
@@ -312,10 +307,7 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
     }
 
-    private void SetCurrentState()
-    {
-        CurrentState = NewState;
-    }
+    #region Logic
 
     private void RightMovementLogic()
     {
@@ -339,6 +331,61 @@ public partial class Player : CharacterBody2D
         NewState = State.Move;
     }
 
+    private void DashLogic()
+    {
+        CanDash = false;
+        NewState = State.Dash;
+        DashTimer.Start();
+    }
+
+    private void JumpJumpLogic()
+    {
+        --DoubleJump;
+        NewState = State.JumpJump;
+    }
+
+    private void JumpLogic()
+    {
+        CanSlide = false;
+        --DoubleJump;
+        NewState = State.Jump;
+    }
+
+    private void WallSlideJumpLogic()
+    {
+        CanSlide = false;
+        PlayerSprite.FlipH = true;
+        Gravity = 300;
+        WallSlideParticle.Emitting = false;
+    }
+
+    private void WallSlideLogic(bool onWall)
+    {
+        if (onWall)
+        {
+            Gravity = 200;
+            CanSlide = true;
+            WallSlideParticle.Emitting = true;
+
+            sfm.TransitionTo("SLIDE");
+        }
+
+        else
+        {
+            CanSlide = false;
+            Gravity = 300;
+            WallSlideParticle.Emitting = false;
+        }
+    }
+
+    #endregion
+
+
+    private void SetCurrentState()
+    {
+        CurrentState = NewState;
+    }
+
     public void IsInWater(bool status)
     {
         Speed = status ? WaterSpeed : LandSpeed;
@@ -360,16 +407,16 @@ public partial class Player : CharacterBody2D
         if (Ammunition <= 0) return;
         Gun.Play("shoot");
         var instance = (Bullet)BulletScene.Instantiate();
-        
+
         instance.AddToGroup("Bullet");
         instance.Rotation = GlobalRotation;
-        instance.Position = new Vector2( GlobalPosition.X + 2, GlobalPosition.Y - 2);
+        instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y - 2);
         instance.LinearVelocity = instance.Transform.X * BulletDirection * Speed;
         --Ammunition;
         DeactivateHUDAmmo(Ammunition);
         CanShoot = false;
         ShootTimer.Start();
-        
+
         GetTree().Root.AddChild(instance);
     }
 
@@ -383,6 +430,7 @@ public partial class Player : CharacterBody2D
         Ammunition = AmmoOG;
         ActivateHUDAmmo(Ammunition);
     }
+
     private void DeactivateHUDAmmo(int countActive)
     {
         for (int i = countActive; i < AmmoList.Count; i++)
