@@ -34,6 +34,18 @@ project/assembly_name="Tutel"
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/Wwise/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://ASSETS/": "purple",
+"res://GeneratedSoundBanks/": "blue",
+"res://LEVEL/": "red",
+"res://OBJECTS/": "green",
+"res://SCRIPTS/": "orange",
+"res://Tutel/": "blue",
+"res://Wwise/": "blue"
+}
+
 [input]
 
 Dash={
