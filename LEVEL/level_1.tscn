@@ -4260,9 +4260,9 @@ centered = false
 
 [node name="Underground" type="ParallaxBackground" parent="."]
 visible = false
-offset = Vector2(2.08165e-12, -628.52)
+offset = Vector2(2.08165e-12, -700)
 scale = Vector2(0.5, 0.5)
-transform = Transform2D(0.5, 3.46941e-12, -3.46941e-12, 0.5, 2.08165e-12, -628.52)
+transform = Transform2D(0.5, 3.46941e-12, -3.46941e-12, 0.5, 2.08165e-12, -700)
 
 [node name="UWLayer1" type="ParallaxLayer" parent="Underground"]
 modulate = Color(1, 1, 1, 0)
@@ -4271,10 +4271,8 @@ motion_scale = Vector2(3.72, 3.72)
 motion_mirroring = Vector2(256, 2.08165e-12)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Underground/UWLayer1"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(0, 180)
+position = Vector2(127.25, 269)
 texture = ExtResource("5_5cyto")
-centered = false
 
 [node name="UWLayer2" type="ParallaxLayer" parent="Underground"]
 scale = Vector2(4, 4)
