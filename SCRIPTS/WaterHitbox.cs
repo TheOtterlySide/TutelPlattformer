@@ -3,8 +3,7 @@ using System;
 
 public partial class WaterHitbox : Area2D
 {
-	[Export] private ParallaxBackground Overworld;
-	[Export] private ParallaxBackground Underworld;
+	[Export] private AnimationPlayer BackgroundTransition;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -19,8 +18,7 @@ public partial class WaterHitbox : Area2D
 	{
 		if (body.IsInGroup("Player") && body is Player player)
 		{
-			Overworld.Visible = false;
-			Underworld.Visible = true;
+			BackgroundTransition.Play("TransitionToUnderground");
 		}
 	}
 
