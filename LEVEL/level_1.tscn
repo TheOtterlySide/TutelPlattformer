@@ -4350,7 +4350,6 @@ sources/2 = SubResource("TileSetAtlasSource_rqckj")
 [node name="Level 1" type="Node2D"]
 
 [node name="Background Transition" type="AnimationPlayer" parent="."]
-deterministic = true
 reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_jjgli")
