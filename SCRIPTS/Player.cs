@@ -235,7 +235,6 @@ public partial class Player : CharacterBody2D
             GameOver();
         }
 
-        GD.Print(CurrentState);
         switch (NewState)
         {
             case State.Idle:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=35 format=3 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
 [ext_resource type="Texture2D" uid="uid://w7no0uvrm5p" path="res://ASSETS/Tilemap/tilemap_new_softy_sand.png" id="1_arkxd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b0443ok17kxjk" path="res://ASSETS/Tilemap/tilemap RockSand.png" id="10_x2ttm"]
 [ext_resource type="Texture2D" uid="uid://c24106yhirk14" path="res://ASSETS/Tilemap/tilemap_packed.png" id="11_yj0s5"]
 [ext_resource type="PackedScene" uid="uid://dvkkl3jvtvd63" path="res://OBJECTS/WaterHitbox.tscn" id="13_w6m3p"]
+[ext_resource type="Script" path="res://SCRIPTS/WaterHitbox.cs" id="15_kdnar"]
 [ext_resource type="Texture2D" uid="uid://dmclfiky14n5j" path="res://ASSETS/Objects/vegetation_tree_palm1.png" id="16_mvdm2"]
 [ext_resource type="Texture2D" uid="uid://drdanxxnc621o" path="res://ASSETS/Objects/vegetatation_grass_small_row1_2.png" id="17_3o0tr"]
 [ext_resource type="Texture2D" uid="uid://c018dwr2ooxnt" path="res://ASSETS/Objects/vegetation_tree_palm6.png" id="18_0uap5"]
@@ -25,6 +26,434 @@
 [ext_resource type="Texture2D" uid="uid://bxtwp5wbbd5xh" path="res://ASSETS/Objects/vegetatation_grass_small_row2_3.png" id="23_6jybu"]
 [ext_resource type="Texture2D" uid="uid://dyg2gk6lsdsqi" path="res://ASSETS/Objects/vegetation_tree_palm4.png" id="24_nos67"]
 [ext_resource type="Texture2D" uid="uid://c226s4nhn55g3" path="res://ASSETS/Objects/vegetatation_grass_small3.png" id="25_yltvr"]
+
+[sub_resource type="Animation" id="Animation_376on"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overworld/OWLayer1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overworld/OWLayer2:modulate:r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overworld/OWLayer2:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overworld/OWLayer2:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overworld/OWLayer2:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Overworld/OWLayer3:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Overworld/OWLayer4:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Underground/UWLayer2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Underground/UWLayer1:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Underground/UWLayer3:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Underground/UWLayer4:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Overworld/OWLayer2:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rrvhp"]
+resource_name = "TransitionToOverworld"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overworld:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Underground:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overworld/OWLayer1:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overworld/OWLayer2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overworld/OWLayer3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Overworld/OWLayer4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Underground/UWLayer1:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Underground/UWLayer2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Underground/UWLayer3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Underground/UWLayer4:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ms5i4"]
+resource_name = "TransitionToUnderground"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overworld:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Underground:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.164939, 0.0583146),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overworld/OWLayer1:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overworld/OWLayer2:modulate:r")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overworld/OWLayer2:modulate:g")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Overworld/OWLayer2:modulate:b")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Overworld/OWLayer2:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Overworld/OWLayer3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Overworld/OWLayer4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Underground/UWLayer2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Underground/UWLayer1:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Underground/UWLayer3:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Underground/UWLayer4:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jjgli"]
+_data = {
+"RESET": SubResource("Animation_376on"),
+"TransitionToOverworld": SubResource("Animation_rrvhp"),
+"TransitionToUnderground": SubResource("Animation_ms5i4")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_enkkq"]
 texture = ExtResource("1_arkxd")
@@ -3920,63 +4349,112 @@ sources/2 = SubResource("TileSetAtlasSource_rqckj")
 
 [node name="Level 1" type="Node2D"]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
+[node name="Background Transition" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_jjgli")
+}
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Overworld" type="ParallaxBackground" parent="."]
+offset = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 2.08165e-12, 2.08165e-12)
+
+[node name="OWLayer1" type="ParallaxLayer" parent="Overworld"]
+position = Vector2(-153.667, -138.333)
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(320, 2.08165e-12)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="Overworld/OWLayer1"]
+texture_repeat = 2
 texture = ExtResource("1_5374j")
 centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 
-[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-visible = false
-position = Vector2(0, 180)
-texture = ExtResource("5_5cyto")
-centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="OWLayer2" type="ParallaxLayer" parent="Overworld"]
+position = Vector2(-153.667, -138.333)
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(320, 2.08165e-12)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="Sprite2D" type="Sprite2D" parent="Overworld/OWLayer2"]
 texture = ExtResource("2_8dyxw")
 centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="OWLayer3" type="ParallaxLayer" parent="Overworld"]
+position = Vector2(-153.667, -138.333)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(320, 2.08165e-12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Overworld/OWLayer3"]
+texture_repeat = 2
+texture = ExtResource("3_2k7tw")
+centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
+
+[node name="OWLayer4" type="ParallaxLayer" parent="Overworld"]
+position = Vector2(-153.667, -138.333)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(320, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="Overworld/OWLayer4"]
+texture_repeat = 2
+texture = ExtResource("4_x86nr")
+centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
+
+[node name="Underground" type="ParallaxBackground" parent="."]
 visible = false
-position = Vector2(0, 180)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 8.32659e-12, -8.32659e-12, 4, 2.08165e-12, 2.08165e-12)
+follow_viewport_scale = 2.0
+scroll_base_scale = Vector2(2, 2)
+
+[node name="UWLayer1" type="ParallaxLayer" parent="Underground"]
+modulate = Color(1, 1, 1, 0)
+texture_repeat = 2
+position = Vector2(-2.66667, -215)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(256, 2.08165e-12)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Underground/UWLayer1"]
+texture_repeat = 2
+texture = ExtResource("5_5cyto")
+centered = false
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
+
+[node name="UWLayer2" type="ParallaxLayer" parent="Underground"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-2.66667, -215)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(256, 2.08165e-12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Underground/UWLayer2"]
 texture = ExtResource("6_0b0ag")
 centered = false
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(320, 2.08165e-12)
+[node name="UWLayer3" type="ParallaxLayer" parent="Underground"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-2.66667, -215)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(256, 2.08165e-12)
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource("3_2k7tw")
-centered = false
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-visible = false
-position = Vector2(0, 180)
+[node name="Sprite2D" type="Sprite2D" parent="Underground/UWLayer3"]
 texture = ExtResource("7_dnua3")
 centered = false
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(320, 2.08165e-12)
+[node name="UWLayer4" type="ParallaxLayer" parent="Underground"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-2.66667, -215)
+motion_scale = Vector2(0.25, 0.25)
+motion_mirroring = Vector2(256, 2.08165e-12)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-texture = ExtResource("4_x86nr")
-centered = false
-
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-visible = false
-position = Vector2(0, 180)
+[node name="Sprite2D2" type="Sprite2D" parent="Underground/UWLayer4"]
 texture = ExtResource("8_0p7tf")
 centered = false
 
@@ -4010,6 +4488,15 @@ stop_on = 3
 stop_fade_time = 10
 
 [node name="AkListener2D" type="AkListener2D" parent="."]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ChangeForBackground" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(256, 24)
+scale = Vector2(3.3, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
 
 [node name="Water" type="Node" parent="."]
 
@@ -4176,3 +4663,5 @@ Speed = 10.0
 position = Vector2(2638, -397)
 Direction = Vector2(15, 2.08165e-12)
 Speed = 15.0
+
+[connection signal="body_entered" from="Node/ChangeForBackground" to="Node/ChangeForBackground" method="EnterChangeBackground"]
