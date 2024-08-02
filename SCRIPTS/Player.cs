@@ -158,7 +158,6 @@ public partial class Player : CharacterBody2D
         if (IsOnFloor() && velocity.X <= 0 && (CurrentState == State.Slide || CurrentState == State.Fall))
         {
                 CanSlide = false;
-                Gravity = 300;
                 WallSlideParticle.Emitting = false;
                 NewState = State.Idle;
         }
