@@ -363,39 +363,6 @@ Ammunition = 5
 DeathHeight = 400.0
 BulletScene = ExtResource("2_xuceo")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="5" type="Sprite2D" parent="HUD" groups=["HUDAmmo"]]
-position = Vector2(1124.25, 19.5)
-scale = Vector2(1.74, 1.76923)
-texture = ExtResource("6_2o4kx")
-
-[node name="4" type="Sprite2D" parent="HUD" groups=["HUDAmmo"]]
-position = Vector2(1124.5, 30)
-scale = Vector2(1.48, 1)
-texture = ExtResource("6_gmy8d")
-
-[node name="3" type="Sprite2D" parent="HUD" groups=["HUDAmmo"]]
-position = Vector2(1124.5, 43)
-scale = Vector2(1.48, 1)
-texture = ExtResource("6_gmy8d")
-
-[node name="2" type="Sprite2D" parent="HUD" groups=["HUDAmmo"]]
-position = Vector2(1125, 56)
-scale = Vector2(1.44, 1)
-texture = ExtResource("6_gmy8d")
-
-[node name="1" type="Sprite2D" parent="HUD" groups=["HUDAmmo"]]
-position = Vector2(1124.5, 69)
-scale = Vector2(1.48, 1)
-texture = ExtResource("6_gmy8d")
-
-[node name="Sprite2D" type="Sprite2D" parent="HUD"]
-light_mask = 3
-position = Vector2(1121, 48)
-scale = Vector2(1.42188, 1.42188)
-texture = ExtResource("7_wqqvr")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, 5)
 shape = SubResource("RectangleShape2D_wgcw6")
@@ -406,7 +373,55 @@ animation = &"jump"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+process_callback = 0
 position_smoothing_enabled = true
+
+[node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Control" type="Control" parent="Camera2D/HUD"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = 50.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="5" type="Sprite2D" parent="Camera2D/HUD/Control" groups=["HUDAmmo"]]
+position = Vector2(19.18, 3)
+scale = Vector2(1.92, 2.15385)
+texture = ExtResource("6_2o4kx")
+
+[node name="4" type="Sprite2D" parent="Camera2D/HUD/Control" groups=["HUDAmmo"]]
+position = Vector2(19.18, 13)
+scale = Vector2(1.48, 1)
+texture = ExtResource("6_gmy8d")
+
+[node name="3" type="Sprite2D" parent="Camera2D/HUD/Control" groups=["HUDAmmo"]]
+position = Vector2(20.18, 26)
+scale = Vector2(1.48, 1)
+texture = ExtResource("6_gmy8d")
+
+[node name="2" type="Sprite2D" parent="Camera2D/HUD/Control" groups=["HUDAmmo"]]
+position = Vector2(20.18, 39)
+scale = Vector2(1.44, 1)
+texture = ExtResource("6_gmy8d")
+
+[node name="1" type="Sprite2D" parent="Camera2D/HUD/Control" groups=["HUDAmmo"]]
+position = Vector2(20.18, 53)
+scale = Vector2(1.48, 1)
+texture = ExtResource("6_gmy8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/HUD/Control"]
+light_mask = 3
+position = Vector2(16.18, 32)
+scale = Vector2(1.42188, 1.42188)
+texture = ExtResource("7_wqqvr")
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 2.0

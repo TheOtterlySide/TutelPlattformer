@@ -4491,9 +4491,72 @@ stop_fade_time = 10
 
 [node name="Node" type="Node" parent="."]
 
+[node name="ChangeForBackground2" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(922, 14)
+scale = Vector2(3.498, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
 [node name="ChangeForBackground" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
 position = Vector2(256, 24)
 scale = Vector2(3.3, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground3" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(1070, -13)
+scale = Vector2(2.9733, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground4" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(1255, -67)
+scale = Vector2(6.0358, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground5" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(2348, -314)
+scale = Vector2(6.0358, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground6" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(2833, -323)
+scale = Vector2(14.196, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground7" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(3441, -323)
+scale = Vector2(36.526, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground8" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(4605, -230)
+scale = Vector2(33.286, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground10" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(4872, -418)
+scale = Vector2(29.386, 1)
+script = ExtResource("15_kdnar")
+BackgroundTransition = NodePath("../../Background Transition")
+UndergroundStatus = false
+
+[node name="ChangeForBackground9" parent="Node" node_paths=PackedStringArray("BackgroundTransition") instance=ExtResource("13_w6m3p")]
+position = Vector2(4035, -225)
+scale = Vector2(13.456, 1)
 script = ExtResource("15_kdnar")
 BackgroundTransition = NodePath("../../Background Transition")
 UndergroundStatus = false
@@ -4664,4 +4727,13 @@ position = Vector2(2638, -397)
 Direction = Vector2(15, 2.08165e-12)
 Speed = 15.0
 
+[connection signal="body_entered" from="Node/ChangeForBackground2" to="Node/ChangeForBackground2" method="EnterChangeBackground"]
 [connection signal="body_entered" from="Node/ChangeForBackground" to="Node/ChangeForBackground" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground3" to="Node/ChangeForBackground3" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground4" to="Node/ChangeForBackground4" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground5" to="Node/ChangeForBackground5" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground6" to="Node/ChangeForBackground6" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground7" to="Node/ChangeForBackground7" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground8" to="Node/ChangeForBackground8" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground10" to="Node/ChangeForBackground10" method="EnterChangeBackground"]
+[connection signal="body_entered" from="Node/ChangeForBackground9" to="Node/ChangeForBackground9" method="EnterChangeBackground"]

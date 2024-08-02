@@ -99,11 +99,11 @@ public partial class Player : CharacterBody2D
 
     private void SetupHUD()
     {
-        HUDAmmo1 = GetNode<Sprite2D>("HUD/1");
-        HUDAmmo2 = GetNode<Sprite2D>("HUD/2");
-        HUDAmmo3 = GetNode<Sprite2D>("HUD/3");
-        HUDAmmo4 = GetNode<Sprite2D>("HUD/4");
-        HUDAmmo5 = GetNode<Sprite2D>("HUD/5");
+        HUDAmmo1 = GetNode<Sprite2D>("Camera2D/HUD/Control/1");
+        HUDAmmo2 = GetNode<Sprite2D>("Camera2D/HUD/Control/2");
+        HUDAmmo3 = GetNode<Sprite2D>("Camera2D/HUD/Control/3");
+        HUDAmmo4 = GetNode<Sprite2D>("Camera2D/HUD/Control/4");
+        HUDAmmo5 = GetNode<Sprite2D>("Camera2D/HUD/Control/5");
 
         AmmoList.Add(HUDAmmo1);
         AmmoList.Add(HUDAmmo2);
