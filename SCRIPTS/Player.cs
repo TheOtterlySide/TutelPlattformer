@@ -122,7 +122,6 @@ public partial class Player : CharacterBody2D
         Vector2 velocity = Velocity;
 
         // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
         Vector2 direction = Input.GetVector
         (
             "ui_left",
@@ -130,6 +129,9 @@ public partial class Player : CharacterBody2D
             "ui_up",
             "ui_down"
         );
+        
+        // Add the gravity.
+        velocity.Y += Gravity * (float)delta;
 
         if (Input.IsActionPressed("ui_left"))
         {
@@ -141,25 +143,44 @@ public partial class Player : CharacterBody2D
             RightMovementLogic();
         }
 
+        //Standing still
         if (Input.IsActionJustReleased("ui_left") || Input.IsActionJustReleased("ui_right"))
         {
             NewState = State.Idle;
         }
+        //Movement
+        velocity.X = direction.X * Speed;
+        
+        //
+        // if (CanSlide && CurrentState == State.Slide)
+        // {
+        //     velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+        // }
 
-        // Add the gravity.
-        velocity.Y += Gravity * (float)delta;
+        //Standing Still
+        if (velocity.Length() <= 0)
+        {
+            NewState = State.Idle;
+        }
 
+        if (velocity.X > 0 || velocity.X < 0)
+        {
+            NewState = State.Move;
+        }
+        
         //Wallslide
-        if (CurrentState == State.Slide && IsOnWall())
+        if (!IsOnFloor() && IsOnWallOnly())
         {
             WallSlideLogic();
         }
 
-        if (IsOnFloor() && velocity.X <= 0 && (CurrentState == State.Slide || CurrentState == State.Fall))
+        //Not Sliding anymore
+        if (IsOnFloor() && !IsOnWallOnly())
         {
-                CanSlide = false;
-                WallSlideParticle.Emitting = false;
-                NewState = State.Idle;
+            CanSlide = false;
+            Gravity = 300;
+            WallSlideParticle.Emitting = false;
+            NewState = State.Idle;
         }
 
         //Wallslide Jump
@@ -174,12 +195,14 @@ public partial class Player : CharacterBody2D
             velocity.Y = JumpVelocity;
             JumpLogic();
         }
-        
+
+        // Handle Fall
         if (Input.IsActionJustReleased("ui_accept"))
         {
             NewState = State.Fall;
         }
 
+        //Handle Landing
         if (Input.IsActionJustReleased("ui_accept") && IsOnFloor())
         {
             NewState = State.Idle;
@@ -194,25 +217,9 @@ public partial class Player : CharacterBody2D
 
         if (IsOnFloor() || IsOnWall())
         {
-            DoubleJump = OGDoubleJump;
+            ResetDoubleJump();
         }
 
-        if (direction != Vector2.Zero && CanSlide == false)
-        {
-            velocity.X = direction.X * Speed;
-        }
-        else
-        {
-            if (CanSlide == false)
-            {
-                velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-            }
-        }
-
-        if (velocity.Length() <= 0)
-        {
-            NewState = State.Idle;
-        }
 
         if (Input.IsActionPressed("Fire") && CanShoot)
         {
@@ -237,12 +244,14 @@ public partial class Player : CharacterBody2D
         switch (NewState)
         {
             case State.Idle:
+
                 SetCurrentState();
                 sfm.TransitionTo("IDLE");
                 Gun.Play("idle");
                 break;
-            
+
             case State.Move:
+
                 if (CurrentState == State.Idle)
                 {
                     SetCurrentState();
@@ -250,37 +259,44 @@ public partial class Player : CharacterBody2D
                 }
 
                 break;
-            
+
             case State.Dash:
-                if (CurrentState == State.Move)
+
+                if (CurrentState == State.Move || CurrentState == State.Idle)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("DASH");
                 }
 
                 break;
-            
+
             case State.Jump:
+
                 SetCurrentState();
                 sfm.TransitionTo("JUMP");
+
                 break;
-            
+
             case State.JumpJump:
-                if (CurrentState == State.Jump)
+
+                if (CurrentState == State.Jump || CurrentState == State.Fall)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("JUMPJUMP");
                 }
 
                 break;
-            
+
             case State.Shoot:
+
                 SetCurrentState();
                 Gun.Play("shoot");
                 sfm.TransitionTo("SHOOT");
+
                 break;
-            
+
             case State.Fall:
+
                 if (CurrentState == State.Jump || CurrentState == State.JumpJump)
                 {
                     SetCurrentState();
@@ -288,9 +304,10 @@ public partial class Player : CharacterBody2D
                 }
 
                 break;
-            
+
             case State.Slide:
-                if (CurrentState == State.Jump || CurrentState == State.JumpJump)
+
+                if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Fall)
                 {
                     if (IsOnWall())
                     {
@@ -308,6 +325,11 @@ public partial class Player : CharacterBody2D
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    private void ResetDoubleJump()
+    {
+        DoubleJump = OGDoubleJump;
     }
 
     #region Logic
@@ -365,10 +387,10 @@ public partial class Player : CharacterBody2D
 
     private void WallSlideLogic()
     {
-            Gravity = 200;
-            CanSlide = true;
-            WallSlideParticle.Emitting = true;
-            NewState = State.Slide;
+        Gravity = 300;
+        CanSlide = true;
+        WallSlideParticle.Emitting = true;
+        NewState = State.Slide;
     }
 
     #endregion

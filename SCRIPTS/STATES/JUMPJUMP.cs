@@ -15,7 +15,7 @@ public partial class JUMPJUMP : State
 	
     public override void Enter() 
     { 
-        PlayerSprite.Play("jumpjump");
+        PlayerSprite.Play("jump");
     }
     
     public override void Exit() 
