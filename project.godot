@@ -35,7 +35,7 @@ project/assembly_name="Tutel"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/Wwise/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/Wwise/plugin.cfg", "res://addons/parallax2d_preview/plugin.cfg")
 
 [file_customization]
 

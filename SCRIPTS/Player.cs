@@ -21,7 +21,7 @@ public partial class Player : CharacterBody2D
 
 
     private float Speed;
-    [Export] private const float JumpVelocity = -300.0f;
+    [Export] private float JumpVelocity = -300.0f;
 
     [Export] private bool IsWater;
 
