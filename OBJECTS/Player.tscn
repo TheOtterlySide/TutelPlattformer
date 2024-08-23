@@ -360,7 +360,7 @@ DashCoolDown = 5.0
 DashPower = 10.0
 OGDoubleJump = 2
 Ammunition = 5
-DeathHeight = 400.0
+DeathHeight = 500.0
 BulletScene = ExtResource("2_xuceo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -369,7 +369,7 @@ shape = SubResource("RectangleShape2D_wgcw6")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_676qr")
-animation = &"jump"
+animation = &""
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
