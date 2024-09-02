@@ -20,6 +20,7 @@ public partial class Water : Area2D
 			player.IsInWater(true);
 			player.Reload();
 		}
+		
 	}
 
 	private void _on_body_exited(Node2D body)
@@ -28,5 +29,6 @@ public partial class Water : Area2D
 		{
 			player.IsInWater(false);
 		}
+
 	}
 }

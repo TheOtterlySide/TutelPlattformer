@@ -34,6 +34,7 @@ public partial class Player : CharacterBody2D
     [Export] private int Ammunition;
     [Export] private int Life;
     [Export] private float DeathHeight;
+    [Export] private TileMapLayer tile;
 
 
     [Export] public PackedScene BulletScene { get; set; }
@@ -172,6 +173,11 @@ public partial class Player : CharacterBody2D
         if (!IsOnFloor() && IsOnWallOnly())
         {
             WallSlideLogic();
+        }
+
+        if (IsOnFloor())
+        {
+            CheckGround();
         }
 
         //Not Sliding anymore
@@ -325,6 +331,11 @@ public partial class Player : CharacterBody2D
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    private void CheckGround()
+    {
+        
     }
 
     private void ResetDoubleJump()
