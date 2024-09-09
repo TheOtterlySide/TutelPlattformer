@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=45 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://SCRIPTS/STATES/JUMPJUMP.cs" id="14_oma1q"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/SLIDE.cs" id="15_vrocs"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/FALL.cs" id="17_pqd46"]
-[ext_resource type="Script" path="res://SCRIPTS/TerrainDetector.cs" id="18_6vbgo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apkk2"]
 atlas = ExtResource("3_w1dfp")
@@ -257,12 +256,6 @@ turbulence_noise_speed_random = 0.06
 turbulence_influence_min = 0.021
 turbulence_influence_max = 0.037
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcw6"]
-size = Vector2(27, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jayf"]
-size = Vector2(26, 20)
-
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(31, -32)
 safe_margin = 0.001
@@ -284,6 +277,9 @@ animation = &"jump"
 zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
+drag_horizontal_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
@@ -395,18 +391,5 @@ Player = NodePath("../..")
 script = ExtResource("17_pqd46")
 Player = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.5, 5)
-shape = SubResource("RectangleShape2D_wgcw6")
-
-[node name="TerrainDetector" type="Area2D" parent="CollisionShape2D"]
-position = Vector2(4.5, -5)
-script = ExtResource("18_6vbgo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/TerrainDetector"]
-position = Vector2(-2, 16)
-shape = SubResource("RectangleShape2D_8jayf")
-
 [connection signal="timeout" from="DashTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
-[connection signal="body_shape_entered" from="CollisionShape2D/TerrainDetector" to="CollisionShape2D/TerrainDetector" method="OnBodyShapeEntered"]
