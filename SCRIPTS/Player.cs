@@ -34,7 +34,8 @@ public partial class Player : CharacterBody2D
     [Export] private int Ammunition;
     [Export] private int Life;
     [Export] private float DeathHeight;
-    [Export] private TileMapLayer tile;
+
+    [Export] private Label Debug;
 
 
     [Export] public PackedScene BulletScene { get; set; }
@@ -152,19 +153,19 @@ public partial class Player : CharacterBody2D
         //Movement
         velocity.X = direction.X * Speed;
         
-        //
+        
         // if (CanSlide && CurrentState == State.Slide)
         // {
         //     velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
         // }
 
         //Standing Still
-        if (velocity.Length() <= 0)
+        if (velocity.Length() == 0)
         {
             NewState = State.Idle;
         }
 
-        if (velocity.X > 0 || velocity.X < 0)
+        if (velocity.X > 0 && velocity.X < 0)
         {
             NewState = State.Move;
         }
@@ -186,7 +187,11 @@ public partial class Player : CharacterBody2D
             CanSlide = false;
             Gravity = 300;
             WallSlideParticle.Emitting = false;
-            NewState = State.Idle;
+
+            if (CurrentState == State.Slide)
+            {
+                NewState = State.Idle;
+            }
         }
 
         //Wallslide Jump
@@ -247,6 +252,15 @@ public partial class Player : CharacterBody2D
             GameOver();
         }
 
+        SetState(velocity);
+
+        Velocity = velocity;
+        MoveAndSlide();
+    }
+
+    private void SetState(Vector2 velocity)
+    {
+        Debug.Text = NewState + " " + velocity.X.ToString("0.00");
         switch (NewState)
         {
             case State.Idle:
@@ -328,9 +342,6 @@ public partial class Player : CharacterBody2D
                 sfm.TransitionTo("IDLE");
                 break;
         }
-
-        Velocity = velocity;
-        MoveAndSlide();
     }
 
     private void CheckGround()
@@ -431,6 +442,7 @@ public partial class Player : CharacterBody2D
     private void Fire(double delta, Vector2 direction)
     {
         if (Ammunition <= 0) return;
+        
         Gun.Play("shoot");
         var instance = (Bullet)BulletScene.Instantiate();
 
@@ -438,6 +450,7 @@ public partial class Player : CharacterBody2D
         instance.Rotation = GlobalRotation;
         instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y - 2);
         instance.LinearVelocity = instance.Transform.X * BulletDirection * Speed;
+        
         --Ammunition;
         DeactivateHUDAmmo(Ammunition);
         CanShoot = false;
