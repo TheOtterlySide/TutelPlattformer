@@ -76,7 +76,7 @@ public partial class Player : CharacterBody2D
     private bool StateMovement;
     private Vector2 StartPos;
 
-    private Tutel.SCRIPTS.StateMachine sfm;
+    private StateMachine sfm;
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     private float Gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -135,7 +135,7 @@ public partial class Player : CharacterBody2D
             "ui_up",
             "ui_down"
         );
-        
+
         // Add the gravity.
         velocity.Y += Gravity * (float)delta;
 
@@ -154,10 +154,11 @@ public partial class Player : CharacterBody2D
         {
             NewState = State.Idle;
         }
+
         //Movement
         velocity.X = direction.X * Speed;
-        
-        
+
+
         // if (CanSlide && CurrentState == State.Slide)
         // {
         //     velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
@@ -176,16 +177,11 @@ public partial class Player : CharacterBody2D
                 NewState = State.Move;
             }
         }
-        
+
         //Wallslide
         if (!IsOnFloor() && IsOnWallOnly())
         {
             WallSlideLogic();
-        }
-
-        if (IsOnFloor())
-        {
-            CheckGround();
         }
 
         //Not Sliding anymore
@@ -279,10 +275,6 @@ public partial class Player : CharacterBody2D
 
             case State.Move:
 
-                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.JumpJump)
-                {
-                    break;
-                }
                 if (CurrentState == State.Idle)
                 {
                     SetCurrentState();
@@ -293,11 +285,8 @@ public partial class Player : CharacterBody2D
 
             case State.Dash:
 
-                if (CurrentState == State.Move || CurrentState == State.Idle)
-                {
-                    SetCurrentState();
-                    sfm.TransitionTo("DASH");
-                }
+                SetCurrentState();
+                sfm.TransitionTo("DASH");
 
                 break;
 
@@ -328,7 +317,7 @@ public partial class Player : CharacterBody2D
 
             case State.Fall:
 
-                if (CurrentState == State.Jump || CurrentState == State.JumpJump)
+                if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Dash)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("FALL");
@@ -353,11 +342,6 @@ public partial class Player : CharacterBody2D
                 sfm.TransitionTo("IDLE");
                 break;
         }
-    }
-
-    private void CheckGround()
-    {
-        
     }
 
     private void ResetDoubleJump()
@@ -451,7 +435,7 @@ public partial class Player : CharacterBody2D
     private void Fire(double delta, Vector2 direction)
     {
         if (Ammunition <= 0) return;
-        
+
         Gun.Play("shoot");
         var instance = (Bullet)BulletScene.Instantiate();
 
@@ -459,7 +443,7 @@ public partial class Player : CharacterBody2D
         instance.Rotation = GlobalRotation;
         instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y - 2);
         instance.LinearVelocity = instance.Transform.X * BulletDirection * Speed;
-        
+
         --Ammunition;
         DeactivateHUDAmmo(Ammunition);
         CanShoot = false;
