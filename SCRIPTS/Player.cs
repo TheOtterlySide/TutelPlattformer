@@ -52,6 +52,8 @@ public partial class Player : CharacterBody2D
 
     private int DoubleJump;
 
+    #region Ammo Related
+
     private Sprite2D HUDAmmo1;
     private Sprite2D HUDAmmo2;
     private Sprite2D HUDAmmo3;
@@ -59,6 +61,8 @@ public partial class Player : CharacterBody2D
     private Sprite2D HUDAmmo5;
     private List<Sprite2D> AmmoList = new List<Sprite2D>();
     private int AmmoOG;
+
+    #endregion
 
     private Area2D GunPosition;
     private Vector2 GunPositionOG;
@@ -165,9 +169,12 @@ public partial class Player : CharacterBody2D
             NewState = State.Idle;
         }
 
-        if (velocity.X > 0 && velocity.X < 0)
+        if (velocity.X > 0 || velocity.X < 0)
         {
-            NewState = State.Move;
+            if (IsOnFloor())
+            {
+                NewState = State.Move;
+            }
         }
         
         //Wallslide
@@ -272,6 +279,10 @@ public partial class Player : CharacterBody2D
 
             case State.Move:
 
+                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.JumpJump)
+                {
+                    break;
+                }
                 if (CurrentState == State.Idle)
                 {
                     SetCurrentState();
@@ -364,7 +375,6 @@ public partial class Player : CharacterBody2D
         Gun.Position = GunPositionOG;
         WallSlideParticle.Position = WallSlideParticlePositionOG;
         BulletDirection = Vector2.Right;
-        NewState = State.Move;
     }
 
     private void LeftMovementLogic()
@@ -375,7 +385,6 @@ public partial class Player : CharacterBody2D
         Gun.Position = GunPosition.Position;
         WallSlideParticle.Position = GunPosition.Position;
         BulletDirection = Vector2.Left;
-        NewState = State.Move;
     }
 
     private void DashLogic()
