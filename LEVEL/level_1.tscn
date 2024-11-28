@@ -1,5 +1,6 @@
-[gd_scene load_steps=32 format=4 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=34 format=4 uid="uid://qoxody3q0yms"]
 
+[ext_resource type="Script" path="res://SCRIPTS/GameLogic.cs" id="1_0nukp"]
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
 [ext_resource type="Script" path="res://SCRIPTS/Background.cs" id="1_xvv2v"]
 [ext_resource type="Texture2D" uid="uid://b6s0t61c6baqq" path="res://ASSETS/Backgrounds/background_sand.png" id="2_8dyxw"]
@@ -460,7 +461,14 @@ size = Vector2(27, 38)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36wv1"]
 size = Vector2(26, 20)
 
-[node name="Level 1" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_plfcl"]
+font_size = 100
+
+[node name="Level 1" type="Node2D" node_paths=PackedStringArray("player", "pauseMenu")]
+process_mode = 3
+script = ExtResource("1_0nukp")
+player = NodePath("CharacterBody2D")
+pauseMenu = NodePath("CharacterBody2D/PauseMenu")
 
 [node name="Background" type="Node2D" parent="." node_paths=PackedStringArray("BackgroundTransition")]
 script = ExtResource("1_xvv2v")
@@ -615,6 +623,7 @@ tile_map_data = PackedByteArray("AAAbAA4AAQAAAAAAAAAbAA8AAQAAAAEAAAAbABAAAQAAAAI
 tile_set = ExtResource("9_ihgrs")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_jmas2")]
+process_mode = 1
 position = Vector2(34, -56)
 slide_on_ceiling = false
 LandSpeed = 150.0
@@ -631,6 +640,43 @@ script = ExtResource("12_ti22q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/CollisionShape2D2/TerrainDetector"]
 position = Vector2(-2, 16)
 shape = SubResource("RectangleShape2D_36wv1")
+
+[node name="PauseMenu" type="Node2D" parent="CharacterBody2D"]
+process_mode = 2
+visible = false
+position = Vector2(-2, 5)
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D/PauseMenu"]
+modulate = Color(1, 1, 1, 0.466667)
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -597.0
+offset_top = -568.0
+offset_right = -567.0
+offset_bottom = -538.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(40, 40)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0.621524, 0.621524, 0.621524, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharacterBody2D/PauseMenu"]
+custom_minimum_size = Vector2(20, 0)
+offset_left = -159.0
+offset_top = -61.0
+offset_right = 154.0
+offset_bottom = 76.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_plfcl")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Goal" parent="." instance=ExtResource("18_tgkx8")]
 position = Vector2(5224, -506)
@@ -759,6 +805,7 @@ position = Vector2(3153, 305)
 texture = ExtResource("17_3o0tr")
 
 [node name="Enemy" type="Node" parent="."]
+process_mode = 1
 
 [node name="Enemy" parent="Enemy" instance=ExtResource("5_omkgj")]
 position = Vector2(361, -29)
