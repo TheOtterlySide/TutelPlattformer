@@ -150,7 +150,7 @@ public partial class Player : CharacterBody2D
         }
 
         //Standing still
-        if (Input.IsActionJustReleased("ui_left") || Input.IsActionJustReleased("ui_right"))
+        if ((Input.IsActionJustReleased("ui_left") && IsOnFloor())|| (Input.IsActionJustReleased("ui_right") && IsOnFloor()))
         {
             NewState = State.Idle;
         }
@@ -217,7 +217,7 @@ public partial class Player : CharacterBody2D
         }
 
         //Handle Landing
-        if (Input.IsActionJustReleased("ui_accept") && IsOnFloor())
+        if (CurrentState == State.Fall && IsOnFloor())
         {
             NewState = State.Idle;
         }

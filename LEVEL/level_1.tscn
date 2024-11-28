@@ -479,7 +479,7 @@ scale = Vector2(2, 2)
 
 [node name="OWLayer1" type="Parallax2D" parent="Background/Overworld"]
 repeat_size = Vector2(320, 0)
-repeat_times = 15
+repeat_times = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Overworld/OWLayer1"]
 texture_repeat = 2
@@ -503,7 +503,7 @@ region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 scale = Vector2(1, 2)
 scroll_offset = Vector2(-0.64, 0)
 repeat_size = Vector2(320, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Overworld/OWLayer2"]
@@ -515,7 +515,7 @@ region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 scale = Vector2(1, 2)
 scroll_offset = Vector2(0.2, 0)
 repeat_size = Vector2(320, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background/Overworld/OWLayer3"]
@@ -528,7 +528,7 @@ region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 [node name="OWLayer4" type="Parallax2D" parent="Background/Overworld"]
 scale = Vector2(1, 2)
 repeat_size = Vector2(320, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Overworld/OWLayer4"]
@@ -549,7 +549,7 @@ texture_repeat = 2
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-2.66667, -215)
 repeat_size = Vector2(256, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="Background/Underground/UWLayer1"]
@@ -562,10 +562,11 @@ offset = Vector2(47.67, 0)
 region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 
 [node name="UWLayer2" type="Parallax2D" parent="Background/Underground"]
+modulate = Color(1, 1, 1, 0)
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-2.66667, -215)
 repeat_size = Vector2(256, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background/Underground/UWLayer2"]
@@ -574,10 +575,11 @@ texture = ExtResource("6_0b0ag")
 centered = false
 
 [node name="UWLayer3" type="Parallax2D" parent="Background/Underground"]
+modulate = Color(1, 1, 1, 0)
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-2.66667, -215)
 repeat_size = Vector2(256, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Underground/UWLayer3"]
@@ -590,7 +592,7 @@ modulate = Color(1, 1, 1, 0)
 scroll_scale = Vector2(0.5, 0.5)
 scroll_offset = Vector2(-2.66667, -215)
 repeat_size = Vector2(256, 2.08165e-12)
-repeat_times = 15
+repeat_times = 20
 follow_viewport = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background/Underground/UWLayer4"]
