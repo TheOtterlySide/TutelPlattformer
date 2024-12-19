@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=35 format=4 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GameLogic.cs" id="1_0nukp"]
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
@@ -15,6 +15,7 @@
 [ext_resource type="TileSet" uid="uid://17oj00kaodao" path="res://LEVEL/Tileset.tres" id="9_ihgrs"]
 [ext_resource type="Script" path="res://SCRIPTS/TerrainDetector.cs" id="12_ti22q"]
 [ext_resource type="PackedScene" uid="uid://dvkkl3jvtvd63" path="res://OBJECTS/WaterHitbox.tscn" id="13_w6m3p"]
+[ext_resource type="Script" path="res://SCRIPTS/ButtonLogic.cs" id="14_awsaw"]
 [ext_resource type="Texture2D" uid="uid://dmclfiky14n5j" path="res://ASSETS/Objects/vegetation_tree_palm1.png" id="16_mvdm2"]
 [ext_resource type="Texture2D" uid="uid://drdanxxnc621o" path="res://ASSETS/Objects/vegetatation_grass_small_row1_2.png" id="17_3o0tr"]
 [ext_resource type="Texture2D" uid="uid://c018dwr2ooxnt" path="res://ASSETS/Objects/vegetation_tree_palm6.png" id="18_0uap5"]
@@ -678,6 +679,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Main Menu" type="Button" parent="CharacterBody2D/PauseMenu"]
+offset_left = -50.0
+offset_top = 87.0
+offset_right = 46.0
+offset_bottom = 118.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Main Menu"
+script = ExtResource("14_awsaw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="CharacterBody2D/PauseMenu" node_paths=PackedStringArray("pauseMenu")]
+offset_left = -50.0
+offset_top = 137.0
+offset_right = 46.0
+offset_bottom = 168.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Resume"
+script = ExtResource("14_awsaw")
+pauseMenu = NodePath("../../..")
+metadata/_edit_use_anchors_ = true
+
 [node name="Goal" parent="." instance=ExtResource("18_tgkx8")]
 position = Vector2(5224, -506)
 
@@ -869,3 +893,5 @@ Speed = 15.0
 
 [connection signal="BackgroundChange" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="Background" method="_on_terrain_detector_background_change"]
 [connection signal="body_shape_entered" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="CharacterBody2D/CollisionShape2D2/TerrainDetector" method="OnBodyShapeEntered"]
+[connection signal="pressed" from="CharacterBody2D/PauseMenu/Main Menu" to="CharacterBody2D/PauseMenu/Main Menu" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="CharacterBody2D/PauseMenu/Resume" to="CharacterBody2D/PauseMenu/Resume" method="_on_resume_pressed"]

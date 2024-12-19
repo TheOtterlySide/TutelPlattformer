@@ -18,6 +18,7 @@ public partial class GameLogic : Node2D
 		if (Input.IsActionJustPressed("ui_cancel"))
 		{
 			//PauseScreen
+		if (Input.IsActionJustPressed("ui_cancel"))
 			if (pauseMenu.IsVisible())
 			{
 				ContinueGame();
@@ -35,7 +36,7 @@ public partial class GameLogic : Node2D
 		GetTree().Paused = true;
 	}
 
-	private void ContinueGame()
+	public void ContinueGame()
 	{
 		pauseMenu.Hide();
 		GetTree().Paused = false;

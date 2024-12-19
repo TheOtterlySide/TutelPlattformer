@@ -91,30 +91,31 @@ anchor_left = 0.498
 anchor_top = 0.589
 anchor_right = 0.5
 anchor_bottom = 0.596
-offset_left = -45.696
-offset_top = -15.672
-offset_right = 48.0
-offset_bottom = 10.792
+offset_left = -150.16
+offset_top = -14.12
+offset_right = -56.464
+offset_bottom = 12.344
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 text = "Load Game"
 script = ExtResource("1_owat7")
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.499
-anchor_top = 0.672
-anchor_right = 0.5
-anchor_bottom = 0.68
-offset_left = -18.848
-offset_top = -15.456
-offset_right = 17.0
-offset_bottom = 10.36
+anchor_left = 0.464583
+anchor_top = 0.63125
+anchor_right = 0.484254
+anchor_bottom = 0.663154
+offset_top = 88.25
+offset_bottom = 88.25
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 text = "Exit"
 script = ExtResource("1_owat7")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Load Game" to="Load Game" method="_on_pressed"]
 [connection signal="pressed" from="Exit" to="Exit" method="_on_exit_pressed"]
