@@ -272,7 +272,7 @@ BulletScene = ExtResource("2_xuceo")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_676qr")
-animation = &"jump"
+animation = &"move"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -336,7 +336,7 @@ wait_time = 2.0
 position = Vector2(9, 5)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_r3486")
-animation = &"move"
+animation = &"shoot"
 
 [node name="ShootTimer" type="Timer" parent="."]
 
@@ -397,4 +397,5 @@ offset_right = 81.0
 offset_bottom = -25.0
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="Watergun" to="." method="_on_shoot_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

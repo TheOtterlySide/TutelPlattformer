@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using System.Collections.Generic;
 using Tutel.SCRIPTS;
@@ -21,6 +22,7 @@ public partial class Player : CharacterBody2D
 
 
     private float Speed;
+    [Export] private float BulletSpeed;
     [Export] private float JumpVelocity = -300.0f;
 
     [Export] private bool IsWater;
@@ -71,6 +73,7 @@ public partial class Player : CharacterBody2D
     private Vector2 WallSlideParticlePositionOG;
 
     private Vector2 BulletDirection = Vector2.Right;
+    private Bullet instance;
 
 
     private bool StateMovement;
@@ -235,9 +238,8 @@ public partial class Player : CharacterBody2D
         }
 
 
-        if (Input.IsActionPressed("Fire") && CanShoot)
+        if (Input.IsActionJustPressed("Fire") && CanShoot)
         {
-            NewState = State.Shoot;
             Fire(delta, direction);
         }
 
@@ -270,7 +272,6 @@ public partial class Player : CharacterBody2D
 
                 SetCurrentState();
                 sfm.TransitionTo("IDLE");
-                Gun.Play("idle");
                 break;
 
             case State.Move:
@@ -309,10 +310,8 @@ public partial class Player : CharacterBody2D
 
             case State.Shoot:
 
-                SetCurrentState();
-                Gun.Play("shoot");
-                sfm.TransitionTo("SHOOT");
-
+                // SetCurrentState();
+                // sfm.TransitionTo("SHOOT");
                 break;
 
             case State.Fall:
@@ -436,14 +435,12 @@ public partial class Player : CharacterBody2D
     {
         if (Ammunition <= 0) return;
 
+        instance = (Bullet)BulletScene.Instantiate();
         Gun.Play("shoot");
-        var instance = (Bullet)BulletScene.Instantiate();
-
         instance.AddToGroup("Bullet");
         instance.Rotation = GlobalRotation;
         instance.Position = new Vector2(GlobalPosition.X + 2, GlobalPosition.Y - 2);
-        instance.LinearVelocity = instance.Transform.X * BulletDirection * Speed;
-
+        instance.LinearVelocity = instance.Transform.X * BulletDirection * BulletSpeed;
         --Ammunition;
         DeactivateHUDAmmo(Ammunition);
         CanShoot = false;
@@ -455,6 +452,12 @@ public partial class Player : CharacterBody2D
     private void _on_shoot_timer_timeout()
     {
         CanShoot = true;
+    }
+
+    private void _on_shoot_animation_finished()
+    {
+        GD.Print("Shooted");
+        Gun.Play("idle");
     }
 
     public void Reload()

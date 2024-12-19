@@ -14,4 +14,9 @@ public partial class Bullet : RigidBody2D
 	{
 		
 	}
+
+	public void _on_timer_timeout()
+	{
+		QueueFree();
+	}
 }
