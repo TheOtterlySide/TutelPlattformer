@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=47 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
@@ -131,6 +131,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_cjxme"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4lt8d"]
+font = SubResource("SystemFont_cjxme")
+font_size = 30
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpiur"]
 atlas = ExtResource("4_uj4co")
 region = Rect2(0, 0, 64, 64)
@@ -256,7 +262,7 @@ turbulence_noise_speed_random = 0.06
 turbulence_influence_min = 0.021
 turbulence_influence_max = 0.037
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Debug") groups=["Player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Debug", "Score") groups=["Player"]]
 position = Vector2(31, -32)
 safe_margin = 0.001
 script = ExtResource("1_xvgui")
@@ -268,6 +274,7 @@ OGDoubleJump = 2
 Ammunition = 5
 DeathHeight = 500.0
 Debug = NodePath("Label")
+Score = NodePath("Camera2D/HUD/Egg")
 BulletScene = ExtResource("2_xuceo")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
@@ -328,6 +335,17 @@ light_mask = 3
 position = Vector2(16.18, 32)
 scale = Vector2(1.42188, 1.42188)
 texture = ExtResource("7_wqqvr")
+
+[node name="Egg" type="Label" parent="Camera2D/HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.83
+offset_top = 46.53
+offset_right = -169.83
+offset_bottom = 88.53
+grow_horizontal = 0
+label_settings = SubResource("LabelSettings_4lt8d")
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 2.0

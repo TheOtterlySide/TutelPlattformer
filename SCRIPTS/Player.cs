@@ -38,6 +38,7 @@ public partial class Player : CharacterBody2D
     [Export] private float DeathHeight;
 
     [Export] private Label Debug;
+    [Export] public Label Score;
 
 
     [Export] public PackedScene BulletScene { get; set; }
@@ -270,7 +271,7 @@ public partial class Player : CharacterBody2D
         Velocity = velocity;
         MoveAndSlide();
     }
-
+    
     private void SetState(Vector2 velocity)
     {
         Debug.Text = NewState + " " + velocity.X.ToString("0.00");

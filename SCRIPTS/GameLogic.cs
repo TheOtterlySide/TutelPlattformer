@@ -5,11 +5,13 @@ public partial class GameLogic : Node2D
 {
 	[Export] private Player player;
 	[Export] private Node2D pauseMenu;
-	[Export] private int score {get; set;}
+	[Export] private int score;
+	[Export] private Label scoreLabel;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		scoreLabel = player.Score;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +30,8 @@ public partial class GameLogic : Node2D
 				PauseGame();
 			}
 		}
+		
+		
 	}
 
 	private void PauseGame()
@@ -46,5 +50,6 @@ public partial class GameLogic : Node2D
 	{
 		GD.Print("AddScore: " + score);
 		score += scoreToAdd;
+		scoreLabel.Text = "Score: " + score;
 	}
 }

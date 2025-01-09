@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://2rxvqwiggt2n"]
+
+[ext_resource type="Script" path="res://SCRIPTS/Collectable.cs" id="1_74n1v"]
+[ext_resource type="Texture2D" uid="uid://dpm1xvs0q61me" path="res://ASSETS/Objects/collectibles_treasure_emerald_1.png" id="2_y1ujy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwxth"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(166, -54)
+script = ExtResource("1_74n1v")
+Points = 2
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kwxth")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y1ujy")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

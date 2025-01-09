@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=36 format=4 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GameLogic.cs" id="1_0nukp"]
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
@@ -27,8 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bxtwp5wbbd5xh" path="res://ASSETS/Objects/vegetatation_grass_small_row2_3.png" id="23_6jybu"]
 [ext_resource type="Texture2D" uid="uid://dyg2gk6lsdsqi" path="res://ASSETS/Objects/vegetation_tree_palm4.png" id="24_nos67"]
 [ext_resource type="Texture2D" uid="uid://c226s4nhn55g3" path="res://ASSETS/Objects/vegetatation_grass_small3.png" id="25_yltvr"]
-[ext_resource type="Script" path="res://SCRIPTS/Collectable.cs" id="28_uojyc"]
-[ext_resource type="Texture2D" uid="uid://dpm1xvs0q61me" path="res://ASSETS/Objects/collectibles_treasure_emerald_1.png" id="29_ihhrb"]
+[ext_resource type="PackedScene" uid="uid://2rxvqwiggt2n" path="res://OBJECTS/Collectable.tscn" id="28_eqs0d"]
 
 [sub_resource type="Animation" id="Animation_376on"]
 length = 0.001
@@ -462,8 +461,6 @@ size = Vector2(12, 15)
 [sub_resource type="LabelSettings" id="LabelSettings_plfcl"]
 font_size = 100
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kwxth"]
-
 [node name="Level 1" type="Node2D" node_paths=PackedStringArray("player", "pauseMenu")]
 process_mode = 3
 script = ExtResource("1_0nukp")
@@ -893,23 +890,72 @@ Speed = 15.0
 
 [node name="Collectables" type="Node" parent="."]
 
-[node name="Node2D" type="Node2D" parent="Collectables" node_paths=PackedStringArray("gameLogic")]
-position = Vector2(166, -54)
-script = ExtResource("28_uojyc")
-gameLogic = NodePath("../..")
-Points = 2
-metadata/_edit_group_ = true
+[node name="Egg" parent="Collectables" instance=ExtResource("28_eqs0d")]
 
-[node name="Area2D" type="Area2D" parent="Collectables/Node2D"]
+[node name="Egg15" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(361, 208)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Node2D/Area2D"]
-shape = SubResource("CircleShape2D_kwxth")
+[node name="Egg16" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(774, 208)
 
-[node name="Sprite2D" type="Sprite2D" parent="Collectables/Node2D"]
-texture = ExtResource("29_ihhrb")
+[node name="Egg17" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(1422, 208)
+
+[node name="Egg18" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(1858, 227)
+
+[node name="Egg19" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(2546, 340)
+
+[node name="Egg20" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(3476, 244)
+
+[node name="Egg21" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(3850, -112)
+
+[node name="Egg22" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(5176, -46)
+
+[node name="Egg2" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(440, -54)
+
+[node name="Egg3" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(829, -54)
+
+[node name="Egg4" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(993, -158)
+
+[node name="Egg5" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(1253, -67)
+
+[node name="Egg6" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(1675, -339)
+
+[node name="Egg7" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(1774, -429)
+
+[node name="Egg8" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(1918, -532)
+
+[node name="Egg9" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(2456, -446)
+
+[node name="Egg10" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(2638, -446)
+
+[node name="Egg11" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(2846, -323)
+
+[node name="Egg12" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(3268, -398)
+
+[node name="Egg13" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(4229, -307)
+
+[node name="Egg14" parent="Collectables" instance=ExtResource("28_eqs0d")]
+position = Vector2(4542, -537)
 
 [connection signal="BackgroundChange" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="Background" method="_on_terrain_detector_background_change"]
 [connection signal="body_shape_entered" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="CharacterBody2D/CollisionShape2D2/TerrainDetector" method="OnBodyShapeEntered"]
 [connection signal="pressed" from="CharacterBody2D/PauseMenu/Main Menu" to="CharacterBody2D/PauseMenu/Main Menu" method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="CharacterBody2D/PauseMenu/Resume" to="CharacterBody2D/PauseMenu/Resume" method="_on_resume_pressed"]
-[connection signal="body_entered" from="Collectables/Node2D/Area2D" to="Collectables/Node2D" method="_on_area_2d_body_entered"]
