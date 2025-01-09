@@ -153,7 +153,7 @@ public partial class Player : CharacterBody2D
         }
 
         //Standing still
-        if ((Input.IsActionJustReleased("ui_left") && IsOnFloor())|| (Input.IsActionJustReleased("ui_right") && IsOnFloor()))
+        if ((Input.IsActionJustReleased("ui_left") && IsOnFloor()) || (Input.IsActionJustReleased("ui_right") && IsOnFloor()))
         {
             NewState = State.Idle;
         }
@@ -237,6 +237,14 @@ public partial class Player : CharacterBody2D
             ResetDoubleJump();
         }
 
+        if (!IsOnFloor() && !IsOnWall())
+        {
+            if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Move)
+            {
+                NewState = State.Fall;
+            }
+        }
+
 
         if (Input.IsActionJustPressed("Fire") && CanShoot)
         {
@@ -316,7 +324,7 @@ public partial class Player : CharacterBody2D
 
             case State.Fall:
 
-                if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Dash)
+                if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Dash || CurrentState == State.Move)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("FALL");
