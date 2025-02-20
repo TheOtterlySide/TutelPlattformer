@@ -185,15 +185,20 @@ public partial class Player : CharacterBody2D
         }
 
         //Not Sliding anymore
-        if (IsOnFloor() && !IsOnWallOnly())
+        if (IsOnFloor() && !IsOnWall() || !IsOnFloor() && !IsOnWall())
         {
             CanSlide = false;
             Gravity = 300;
             WallSlideParticle.Emitting = false;
 
-            if (CurrentState == State.Slide)
+            if (CurrentState == State.Slide && IsOnFloor())
             {
                 NewState = State.Idle;
+            }
+
+            if (CurrentState == State.Slide && !IsOnFloor())
+            {
+                NewState = State.Fall;
             }
         }
 
@@ -210,12 +215,6 @@ public partial class Player : CharacterBody2D
             JumpLogic();
         }
 
-        // // Handle Fall
-        // if (Input.IsActionJustReleased("ui_accept"))
-        // {
-        //     NewState = State.Fall;
-        // }
-
         //Handle Landing
         if (CurrentState == State.Fall && IsOnFloor())
         {
@@ -223,7 +222,7 @@ public partial class Player : CharacterBody2D
         }
 
         // JumpJump
-        if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && DoubleJump >= 0)
+        if (Input.IsActionJustPressed("ui_accept") && !IsOnFloor() && !IsOnWall() && DoubleJump >= 0)
         {
             velocity.Y = JumpVelocity;
             JumpJumpLogic();
@@ -303,7 +302,7 @@ public partial class Player : CharacterBody2D
 
             case State.JumpJump:
 
-                if (CurrentState == State.Jump || CurrentState == State.Fall)
+                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.Slide )
                 {
                     SetCurrentState();
                     sfm.TransitionTo("JUMPJUMP");
@@ -319,7 +318,7 @@ public partial class Player : CharacterBody2D
 
             case State.Fall:
 
-                if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Dash || CurrentState == State.Move)
+                if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Dash || CurrentState == State.Move || CurrentState == State.Slide)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("FALL");
@@ -401,6 +400,8 @@ public partial class Player : CharacterBody2D
         PlayerSprite.FlipH = true;
         Gravity = 300;
         WallSlideParticle.Emitting = false;
+        
+        JumpTimer.Start();
         NewState = State.Jump;
     }
 
