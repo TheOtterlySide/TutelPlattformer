@@ -49,6 +49,7 @@ public partial class Player : CharacterBody2D
 
     private Timer DashTimer;
     private Timer ShootTimer;
+    private Timer JumpTimer;
 
     private AnimatedSprite2D PlayerSprite;
     private AnimatedSprite2D Gun;
@@ -93,8 +94,9 @@ public partial class Player : CharacterBody2D
         Gun = GetNode<AnimatedSprite2D>("Watergun");
         GunPositionOG = Gun.Position;
         GunPosition = GetNode<Area2D>("GunPosition");
-        DashTimer = GetNode<Timer>("DashTimer");
-        ShootTimer = GetNode<Timer>("ShootTimer");
+        DashTimer = GetNode<Timer>("Timer/DashTimer");
+        ShootTimer = GetNode<Timer>("Timer/ShootTimer");
+        JumpTimer = GetNode<Timer>("Timer/JumpTimer");
         PlayerSprite = GetNode<AnimatedSprite2D>("PlayerSprite");
         WallSlideParticle = GetNode<GpuParticles2D>("GPUParticles2D");
         WallSlideParticlePositionOG = WallSlideParticle.Position;
@@ -162,12 +164,6 @@ public partial class Player : CharacterBody2D
         //Movement
         velocity.X = direction.X * Speed;
 
-
-        // if (CanSlide && CurrentState == State.Slide)
-        // {
-        //     velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-        // }
-
         //Standing Still
         if (velocity.Length() == 0)
         {
@@ -214,11 +210,11 @@ public partial class Player : CharacterBody2D
             JumpLogic();
         }
 
-        // Handle Fall
-        if (Input.IsActionJustReleased("ui_accept"))
-        {
-            NewState = State.Fall;
-        }
+        // // Handle Fall
+        // if (Input.IsActionJustReleased("ui_accept"))
+        // {
+        //     NewState = State.Fall;
+        // }
 
         //Handle Landing
         if (CurrentState == State.Fall && IsOnFloor())
@@ -240,12 +236,11 @@ public partial class Player : CharacterBody2D
 
         if (!IsOnFloor() && !IsOnWall())
         {
-            if (CurrentState == State.Jump || CurrentState == State.JumpJump || CurrentState == State.Move)
+            if (CurrentState == State.Move)
             {
                 NewState = State.Fall;
             }
         }
-
 
         if (Input.IsActionJustPressed("Fire") && CanShoot)
         {
@@ -261,20 +256,19 @@ public partial class Player : CharacterBody2D
             }
         }
 
-        if (GetGlobalMousePosition().Y > DeathHeight)
+        if (GetGlobalPosition().Y > DeathHeight)
         {
             GameOver();
         }
 
-        SetState(velocity);
-
+        SetState();
+        Debug.Text = CurrentState.ToString();
         Velocity = velocity;
         MoveAndSlide();
     }
     
-    private void SetState(Vector2 velocity)
+    private void SetState()
     {
-        Debug.Text = NewState + " " + velocity.X.ToString("0.00");
         switch (NewState)
         {
             case State.Idle:
@@ -388,12 +382,14 @@ public partial class Player : CharacterBody2D
 
     private void JumpJumpLogic()
     {
+        JumpTimer.Start();
         --DoubleJump;
         NewState = State.JumpJump;
     }
 
     private void JumpLogic()
     {
+        JumpTimer.Start();
         CanSlide = false;
         --DoubleJump;
         NewState = State.Jump;
@@ -438,6 +434,7 @@ public partial class Player : CharacterBody2D
     private void _on_timer_timeout()
     {
         CanDash = true;
+        DashTimer.Stop();
     }
 
     private void Fire(double delta, Vector2 direction)
@@ -461,12 +458,19 @@ public partial class Player : CharacterBody2D
     private void _on_shoot_timer_timeout()
     {
         CanShoot = true;
+        ShootTimer.Stop();
     }
 
     private void _on_shoot_animation_finished()
     {
-        GD.Print("Shooted");
         Gun.Play("idle");
+    }
+
+    private void _on_jump_timer_timeout()
+    {
+        GD.Print("Shooted");
+        NewState = State.Fall;   
+        JumpTimer.Stop();
     }
 
     public void Reload()

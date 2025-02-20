@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=44 format=4 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GameLogic.cs" id="1_0nukp"]
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
@@ -188,6 +188,30 @@ tracks/12/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Background/Overworld:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Background/Underground:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rdxug"]
@@ -451,9 +475,49 @@ tracks/10/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Background/Underground:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.988235)]
+}
+
+[sub_resource type="Animation" id="Animation_82gpq"]
+resource_name = "Initial"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Overworld:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Underground:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjgli"]
 _data = {
+"Initial": SubResource("Animation_82gpq"),
 "RESET": SubResource("Animation_376on"),
 "TransitionToOverworld": SubResource("Animation_rdxug"),
 "TransitionToUnderground": SubResource("Animation_ms5i4")
@@ -484,6 +548,7 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_jjgli")
 }
+autoplay = "Initial"
 
 [node name="Overworld" type="Node2D" parent="Background"]
 position = Vector2(0, -454.79)
@@ -551,6 +616,7 @@ centered = false
 region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 
 [node name="Underground" type="Node2D" parent="Background"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(129, -82)
 scale = Vector2(3, 3)
 metadata/_edit_group_ = true
