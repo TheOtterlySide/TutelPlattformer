@@ -4,13 +4,15 @@ using System;
 public partial class GameLogic : Node2D
 {
 	[Export] private Player player;
-	[Export] private Node2D pauseMenu;
 	[Export] private int score;
 	[Export] private Label scoreLabel;
 
+	private CanvasLayer pauseMenu;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		var cameraNode = player.GetNode("Camera2D");
+		pauseMenu = cameraNode.GetNode<CanvasLayer>("PauseMenu");
 		scoreLabel = player.Score;
 	}
 

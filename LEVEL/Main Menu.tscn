@@ -19,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(5, 5)
@@ -86,15 +87,15 @@ centered = false
 
 [node name="Load Game" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.498
-anchor_top = 0.589
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.596
-offset_left = -150.16
-offset_top = -14.12
-offset_right = -56.464
-offset_bottom = 12.344
+anchor_bottom = 0.5
+offset_left = -107.35
+offset_top = 60.0
+offset_right = -11.35
+offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -103,19 +104,20 @@ script = ExtResource("1_owat7")
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.464583
-anchor_top = 0.63125
-anchor_right = 0.484254
-anchor_bottom = 0.663154
-offset_top = 88.25
-offset_bottom = 88.25
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.12
+offset_top = 210.0
+offset_right = 20.88
+offset_bottom = 243.376
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 text = "Exit"
 script = ExtResource("1_owat7")
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Load Game" to="Load Game" method="_on_pressed"]
 [connection signal="pressed" from="Exit" to="Exit" method="_on_exit_pressed"]

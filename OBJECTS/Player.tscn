@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=49 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d33mqps6in104" path="res://ASSETS/Objects/vfx_effect_diamond_1.png" id="5_t6rmb"]
 [ext_resource type="Texture2D" uid="uid://bkg55x5caxu7w" path="res://ASSETS/Characters/Player/HUD_Ammo_TOP.png" id="6_2o4kx"]
 [ext_resource type="Texture2D" uid="uid://bt6c8eqy75nma" path="res://ASSETS/Characters/Player/HUD_Ammo.png" id="6_gmy8d"]
+[ext_resource type="Script" path="res://SCRIPTS/ButtonLogic.cs" id="7_rcw51"]
 [ext_resource type="Texture2D" uid="uid://d1p26pdj2j6wi" path="res://ASSETS/Characters/Player/HUD.png" id="7_wqqvr"]
 [ext_resource type="Script" path="res://SCRIPTS/StateMachine.cs" id="9_i6h4j"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/IDLE.cs" id="10_ia81d"]
@@ -136,6 +137,9 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_4lt8d"]
 font = SubResource("SystemFont_cjxme")
 font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_vlu07"]
+font_size = 100
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpiur"]
 atlas = ExtResource("4_uj4co")
@@ -347,6 +351,85 @@ offset_bottom = 88.53
 grow_horizontal = 0
 label_settings = SubResource("LabelSettings_4lt8d")
 
+[node name="PauseMenu" type="CanvasLayer" parent="Camera2D"]
+visible = false
+
+[node name="Control" type="Control" parent="Camera2D/PauseMenu"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/PauseMenu/Control"]
+modulate = Color(1, 1, 1, 0.466667)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1244.0
+offset_top = -592.0
+offset_right = -1214.0
+offset_bottom = -562.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(40, 40)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0.621524, 0.621524, 0.621524, 1)
+
+[node name="Label" type="Label" parent="Camera2D/PauseMenu/Control"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.5
+offset_top = -115.5
+offset_right = 165.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_vlu07")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main Menu" type="Button" parent="Camera2D/PauseMenu/Control"]
+offset_left = -21.0
+offset_top = 60.0
+offset_right = 75.0
+offset_bottom = 91.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Main Menu"
+script = ExtResource("7_rcw51")
+
+[node name="Resume" type="Button" parent="Camera2D/PauseMenu/Control"]
+offset_left = -21.0
+offset_top = 110.0
+offset_right = 75.0
+offset_bottom = 141.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Resume"
+script = ExtResource("7_rcw51")
+
 [node name="Watergun" type="AnimatedSprite2D" parent="."]
 position = Vector2(9, 5)
 scale = Vector2(0.5, 0.5)
@@ -419,6 +502,8 @@ wait_time = 2.0
 [node name="JumpTimer" type="Timer" parent="Timer"]
 wait_time = 0.5
 
+[connection signal="pressed" from="Camera2D/PauseMenu/Control/Main Menu" to="Camera2D/PauseMenu/Control/Main Menu" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="Camera2D/PauseMenu/Control/Resume" to="Camera2D/PauseMenu/Control/Resume" method="_on_resume_pressed"]
 [connection signal="animation_finished" from="Watergun" to="." method="_on_shoot_animation_finished"]
 [connection signal="timeout" from="Timer/DashTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer/ShootTimer" to="." method="_on_shoot_timer_timeout"]
