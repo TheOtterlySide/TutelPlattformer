@@ -50,7 +50,6 @@ public partial class GameLogic : Node2D
 
 	public void AddScore(int scoreToAdd)
 	{
-		GD.Print("AddScore: " + score);
 		score += scoreToAdd;
 		scoreLabel.Text = "Score: " + score;
 	}

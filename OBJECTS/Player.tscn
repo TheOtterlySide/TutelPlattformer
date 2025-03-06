@@ -411,6 +411,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Main Menu" type="Button" parent="Camera2D/PauseMenu/Control"]
+layout_mode = 0
 offset_left = -21.0
 offset_top = 60.0
 offset_right = 75.0
@@ -421,6 +422,7 @@ text = "Main Menu"
 script = ExtResource("7_rcw51")
 
 [node name="Resume" type="Button" parent="Camera2D/PauseMenu/Control"]
+layout_mode = 0
 offset_left = -21.0
 offset_top = 110.0
 offset_right = 75.0

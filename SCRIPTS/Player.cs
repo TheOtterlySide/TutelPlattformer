@@ -469,7 +469,6 @@ public partial class Player : CharacterBody2D
 
     private void _on_jump_timer_timeout()
     {
-        GD.Print("Shooted");
         NewState = State.Fall;   
         JumpTimer.Stop();
     }
