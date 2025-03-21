@@ -925,6 +925,34 @@ texture = ExtResource("13_mf3fk")
 position = Vector2(6845, -592)
 texture = ExtResource("15_ljfa2")
 
+[node name="VegetatationGrassSmallRow35" type="Sprite2D" parent="Vegetation"]
+position = Vector2(2865, 305)
+texture = ExtResource("22_v5otn")
+
+[node name="VegetatationGrassSmallRow32" type="Sprite2D" parent="Vegetation"]
+position = Vector2(1983, 273)
+texture = ExtResource("34_0u7p0")
+
+[node name="VegetatationGrassSmallRow26" type="Sprite2D" parent="Vegetation"]
+position = Vector2(1231, 241)
+texture = ExtResource("19_r5gxl")
+
+[node name="VegetatationGrassSmallRow27" type="Sprite2D" parent="Vegetation"]
+position = Vector2(1203, 241)
+texture = ExtResource("23_6jybu")
+
+[node name="VegetatationGrassSmall7" type="Sprite2D" parent="Vegetation"]
+position = Vector2(1751, 144)
+texture = ExtResource("21_1fjql")
+
+[node name="VegetatationGrassSmallRow31" type="Sprite2D" parent="Vegetation"]
+position = Vector2(640, 208)
+texture = ExtResource("35_chlwt")
+
+[node name="VegetatationGrassSmallRow36" type="Sprite2D" parent="Vegetation"]
+position = Vector2(685, 208)
+texture = ExtResource("34_0u7p0")
+
 [node name="Enemy" type="Node" parent="."]
 process_mode = 1
 
@@ -1055,34 +1083,6 @@ position = Vector2(4229, -307)
 
 [node name="Egg14" parent="Collectables" instance=ExtResource("28_eqs0d")]
 position = Vector2(4542, -537)
-
-[node name="VegetatationGrassSmallRow33" type="Sprite2D" parent="."]
-position = Vector2(2865, 305)
-texture = ExtResource("22_v5otn")
-
-[node name="VegetatationGrassSmallRow32" type="Sprite2D" parent="."]
-position = Vector2(1983, 273)
-texture = ExtResource("34_0u7p0")
-
-[node name="VegetatationGrassSmallRow22" type="Sprite2D" parent="."]
-position = Vector2(1231, 241)
-texture = ExtResource("19_r5gxl")
-
-[node name="VegetatationGrassSmallRow23" type="Sprite2D" parent="."]
-position = Vector2(1203, 241)
-texture = ExtResource("23_6jybu")
-
-[node name="VegetatationGrassSmall2" type="Sprite2D" parent="."]
-position = Vector2(1751, 144)
-texture = ExtResource("21_1fjql")
-
-[node name="VegetatationGrassSmallRow31" type="Sprite2D" parent="."]
-position = Vector2(640, 208)
-texture = ExtResource("35_chlwt")
-
-[node name="VegetatationGrassSmallRow34" type="Sprite2D" parent="."]
-position = Vector2(685, 208)
-texture = ExtResource("34_0u7p0")
 
 [connection signal="BackgroundChange" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="Background" method="_on_terrain_detector_background_change"]
 [connection signal="body_shape_entered" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="CharacterBody2D/CollisionShape2D2/TerrainDetector" method="OnBodyShapeEntered"]

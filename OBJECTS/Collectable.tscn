@@ -1,22 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://2rxvqwiggt2n"]
+[gd_scene load_steps=9 format=3 uid="uid://2rxvqwiggt2n"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Collectable.cs" id="1_74n1v"]
-[ext_resource type="Texture2D" uid="uid://dpm1xvs0q61me" path="res://ASSETS/Objects/collectibles_treasure_emerald_1.png" id="2_y1ujy"]
+[ext_resource type="Texture2D" uid="uid://cwprt4vlxf0q4" path="res://ASSETS/Egg/Egg - 0.png" id="2_o0g1e"]
+[ext_resource type="Texture2D" uid="uid://qvw0q4vxiayk" path="res://ASSETS/Egg/Egg - 1.png" id="3_lj7gg"]
+[ext_resource type="Texture2D" uid="uid://pq4d5kb55hha" path="res://ASSETS/Egg/Egg - 2.png" id="4_c2okp"]
+[ext_resource type="Texture2D" uid="uid://bfiqts404e0v7" path="res://ASSETS/Egg/Egg - 3.png" id="5_mhhk0"]
+[ext_resource type="Texture2D" uid="uid://c4u1w678ipdm0" path="res://ASSETS/Egg/Egg - 4.png" id="6_77vve"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bltub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o0g1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lj7gg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c2okp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mhhk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_77vve")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwxth"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(166, -54)
+position = Vector2(186, -55)
 script = ExtResource("1_74n1v")
 Points = 2
-metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 2)
+scale = Vector2(0.390625, 0.390625)
+sprite_frames = SubResource("SpriteFrames_bltub")
+autoplay = "default"
+frame = 1
+frame_progress = 0.120804
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_kwxth")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_y1ujy")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
