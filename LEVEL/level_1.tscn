@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://qoxody3q0yms"]
+[gd_scene load_steps=42 format=4 uid="uid://qoxody3q0yms"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GameLogic.cs" id="1_0nukp"]
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_5374j"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://SCRIPTS/TerrainDetector.cs" id="12_ti22q"]
 [ext_resource type="Texture2D" uid="uid://db42j5y8apxbx" path="res://ASSETS/Objects/vegetatation_grass_small_row1_1.png" id="13_mf3fk"]
 [ext_resource type="PackedScene" uid="uid://dvkkl3jvtvd63" path="res://OBJECTS/WaterHitbox.tscn" id="13_w6m3p"]
-[ext_resource type="Script" path="res://SCRIPTS/ButtonLogic.cs" id="14_awsaw"]
 [ext_resource type="Texture2D" uid="uid://dfv6m6i24aexv" path="res://ASSETS/Objects/vegetation_tree_palm2.png" id="15_ljfa2"]
 [ext_resource type="Texture2D" uid="uid://dmclfiky14n5j" path="res://ASSETS/Objects/vegetation_tree_palm1.png" id="16_mvdm2"]
 [ext_resource type="Texture2D" uid="uid://drdanxxnc621o" path="res://ASSETS/Objects/vegetatation_grass_small_row1_2.png" id="17_3o0tr"]
@@ -35,6 +34,33 @@
 [ext_resource type="Texture2D" uid="uid://sn6hxa5070g6" path="res://ASSETS/Objects/vegetatation_grass_small4.png" id="29_rvkxu"]
 [ext_resource type="Texture2D" uid="uid://bvgyyngqwualy" path="res://ASSETS/Objects/vegetatation_grass_small_row3_2.png" id="34_0u7p0"]
 [ext_resource type="Texture2D" uid="uid://d3844e71b1245" path="res://ASSETS/Objects/vegetatation_grass_small_row3_1.png" id="35_chlwt"]
+
+[sub_resource type="Animation" id="Animation_82gpq"]
+resource_name = "Initial"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Overworld:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Underground:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_376on"]
 length = 0.001
@@ -188,6 +214,30 @@ tracks/12/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Background/Overworld:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Background/Underground:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rdxug"]
@@ -451,9 +501,22 @@ tracks/10/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Background/Underground:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.988235)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjgli"]
 _data = {
+"Initial": SubResource("Animation_82gpq"),
 "RESET": SubResource("Animation_376on"),
 "TransitionToOverworld": SubResource("Animation_rdxug"),
 "TransitionToUnderground": SubResource("Animation_ms5i4")
@@ -465,14 +528,10 @@ size = Vector2(27, 38)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36wv1"]
 size = Vector2(12, 15)
 
-[sub_resource type="LabelSettings" id="LabelSettings_plfcl"]
-font_size = 100
-
-[node name="Level 1" type="Node2D" node_paths=PackedStringArray("player", "pauseMenu")]
+[node name="Level 1" type="Node2D" node_paths=PackedStringArray("player")]
 process_mode = 3
 script = ExtResource("1_0nukp")
 player = NodePath("CharacterBody2D")
-pauseMenu = NodePath("CharacterBody2D/PauseMenu")
 
 [node name="Background" type="Node2D" parent="." node_paths=PackedStringArray("BackgroundTransition")]
 script = ExtResource("1_xvv2v")
@@ -484,6 +543,7 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_jjgli")
 }
+autoplay = "Initial"
 
 [node name="Overworld" type="Node2D" parent="Background"]
 position = Vector2(0, -454.79)
@@ -551,6 +611,7 @@ centered = false
 region_rect = Rect2(2.08165e-12, 2.08165e-12, 1920, 1080)
 
 [node name="Underground" type="Node2D" parent="Background"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(129, -82)
 scale = Vector2(3, 3)
 metadata/_edit_group_ = true
@@ -656,66 +717,6 @@ script = ExtResource("12_ti22q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/CollisionShape2D2/TerrainDetector"]
 position = Vector2(-2.5, 19)
 shape = SubResource("RectangleShape2D_36wv1")
-
-[node name="PauseMenu" type="Node2D" parent="CharacterBody2D"]
-process_mode = 2
-visible = false
-position = Vector2(-2, 5)
-
-[node name="ColorRect" type="ColorRect" parent="CharacterBody2D/PauseMenu"]
-modulate = Color(1, 1, 1, 0.466667)
-custom_minimum_size = Vector2(30, 30)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -597.0
-offset_top = -568.0
-offset_right = -567.0
-offset_bottom = -538.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(40, 40)
-size_flags_horizontal = 6
-size_flags_vertical = 6
-color = Color(0.621524, 0.621524, 0.621524, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="CharacterBody2D/PauseMenu"]
-custom_minimum_size = Vector2(20, 0)
-offset_left = -159.0
-offset_top = -61.0
-offset_right = 154.0
-offset_bottom = 76.0
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "PAUSE"
-label_settings = SubResource("LabelSettings_plfcl")
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Main Menu" type="Button" parent="CharacterBody2D/PauseMenu"]
-offset_left = -50.0
-offset_top = 87.0
-offset_right = 46.0
-offset_bottom = 118.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Main Menu"
-script = ExtResource("14_awsaw")
-metadata/_edit_use_anchors_ = true
-
-[node name="Resume" type="Button" parent="CharacterBody2D/PauseMenu" node_paths=PackedStringArray("pauseMenu")]
-offset_left = -50.0
-offset_top = 137.0
-offset_right = 46.0
-offset_bottom = 168.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Resume"
-script = ExtResource("14_awsaw")
-pauseMenu = NodePath("../../..")
-metadata/_edit_use_anchors_ = true
 
 [node name="Goal" parent="." instance=ExtResource("18_tgkx8")]
 position = Vector2(6882, -555)
@@ -1085,5 +1086,3 @@ texture = ExtResource("34_0u7p0")
 
 [connection signal="BackgroundChange" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="Background" method="_on_terrain_detector_background_change"]
 [connection signal="body_shape_entered" from="CharacterBody2D/CollisionShape2D2/TerrainDetector" to="CharacterBody2D/CollisionShape2D2/TerrainDetector" method="OnBodyShapeEntered"]
-[connection signal="pressed" from="CharacterBody2D/PauseMenu/Main Menu" to="CharacterBody2D/PauseMenu/Main Menu" method="_on_MainMenu_pressed"]
-[connection signal="pressed" from="CharacterBody2D/PauseMenu/Resume" to="CharacterBody2D/PauseMenu/Resume" method="_on_resume_pressed"]

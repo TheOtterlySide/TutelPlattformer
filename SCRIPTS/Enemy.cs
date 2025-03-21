@@ -10,28 +10,36 @@ public partial class Enemy : Area2D
 	private Vector2 StartPos;
 
 	private Vector2 DestinationPos;
+	private AnimatedSprite2D AnimatedSprite;
+
+	private bool IsMoving;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		AddToGroup("Enemy");
 		StartPos = GlobalPosition;
 		DestinationPos = StartPos + Direction;
+		AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		IsMoving = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GlobalPosition = GlobalPosition.MoveToward(DestinationPos, Speed * (float)delta);
-
-		if (GlobalPosition == DestinationPos)
+		if (IsMoving)
 		{
-			if (GlobalPosition == StartPos)
+			GlobalPosition = GlobalPosition.MoveToward(DestinationPos, Speed * (float)delta);
+			AnimatedSprite.Play("moving");
+			if (GlobalPosition == DestinationPos)
 			{
-				DestinationPos = StartPos + Direction;
-			}
-			else
-			{
-				DestinationPos = StartPos;
+				if (GlobalPosition == StartPos)
+				{
+					DestinationPos = StartPos + Direction;
+				}
+				else
+				{
+					DestinationPos = StartPos;
+				}
 			}
 		}
 	}
@@ -40,6 +48,7 @@ public partial class Enemy : Area2D
 	{
 		if (body.IsInGroup("Bullet"))
 		{
+			IsMoving = false;
 			LifeHandling();
 		}
 		if (body.IsInGroup("Player") && body is Player player)
@@ -51,10 +60,16 @@ public partial class Enemy : Area2D
 	private void LifeHandling()
 	{
 		--Life;
-
+		AnimatedSprite.Stop();
+		AnimatedSprite.Play("hurt");
 		if (Life <= 0)
 		{
 			QueueFree();
 		}
+	}
+
+	private void _on_hurt_finished()
+	{
+		IsMoving = true;
 	}
 }
