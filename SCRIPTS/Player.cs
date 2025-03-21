@@ -68,7 +68,9 @@ public partial class Player : CharacterBody2D
 
     #endregion
 
-    private Area2D GunPosition;
+    private Area2D GunPositionLeft;
+    private Area2D GunPositionBottom;
+    private Area2D GunPositionBottomLeft;
     private Vector2 GunPositionOG;
 
     private GpuParticles2D WallSlideParticle;
@@ -93,7 +95,9 @@ public partial class Player : CharacterBody2D
         BulletScene = (PackedScene)GD.Load("res://OBJECTS/Bullet.tscn");
         Gun = GetNode<AnimatedSprite2D>("Watergun");
         GunPositionOG = Gun.Position;
-        GunPosition = GetNode<Area2D>("GunPosition");
+        GunPositionLeft = GetNode<Area2D>("GunPositionLeft");
+        GunPositionBottom = GetNode<Area2D>("GunPositionBottom");
+        GunPositionBottomLeft = GetNode<Area2D>("GunPositionBottomLeft");
         DashTimer = GetNode<Timer>("Timer/DashTimer");
         ShootTimer = GetNode<Timer>("Timer/ShootTimer");
         JumpTimer = GetNode<Timer>("Timer/JumpTimer");
@@ -190,6 +194,7 @@ public partial class Player : CharacterBody2D
             CanSlide = false;
             Gravity = 300;
             WallSlideParticle.Emitting = false;
+            Gun.Rotation = 0;
 
             if (CurrentState == State.Slide && IsOnFloor())
             {
@@ -265,7 +270,7 @@ public partial class Player : CharacterBody2D
         Velocity = velocity;
         MoveAndSlide();
     }
-    
+
     private void SetState()
     {
         switch (NewState)
@@ -302,7 +307,7 @@ public partial class Player : CharacterBody2D
 
             case State.JumpJump:
 
-                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.Slide )
+                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.Slide)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("JUMPJUMP");
@@ -357,7 +362,11 @@ public partial class Player : CharacterBody2D
         PlayerSprite.FlipH = false;
         Gun.FlipH = false;
         StateMovement = true;
-        Gun.Position = GunPositionOG;
+        if (CurrentState == State.Slide)
+        {
+            Gun.Position = GunPositionOG;
+        }
+
         WallSlideParticle.Position = WallSlideParticlePositionOG;
         BulletDirection = Vector2.Right;
     }
@@ -367,8 +376,12 @@ public partial class Player : CharacterBody2D
         PlayerSprite.FlipH = true;
         Gun.FlipH = true;
         StateMovement = true;
-        Gun.Position = GunPosition.Position;
-        WallSlideParticle.Position = GunPosition.Position;
+        if (CurrentState != State.Slide)
+        {
+            Gun.Position = GunPositionLeft.Position;
+        }
+
+        WallSlideParticle.Position = GunPositionLeft.Position;
         BulletDirection = Vector2.Left;
     }
 
@@ -400,7 +413,7 @@ public partial class Player : CharacterBody2D
         PlayerSprite.FlipH = true;
         Gravity = 300;
         WallSlideParticle.Emitting = false;
-        
+
         JumpTimer.Start();
         NewState = State.Jump;
     }
@@ -411,6 +424,18 @@ public partial class Player : CharacterBody2D
         CanSlide = true;
         WallSlideParticle.Emitting = true;
         NewState = State.Slide;
+        
+        if (Input.IsActionPressed("ui_left"))
+        {
+            Gun.RotationDegrees = -90;
+            Gun.Position = GunPositionBottomLeft.Position;
+        }
+
+        if (Input.IsActionPressed("ui_right"))
+        {
+            Gun.RotationDegrees = 90;
+            Gun.Position = GunPositionBottom.Position;
+        }
     }
 
     #endregion
@@ -469,7 +494,7 @@ public partial class Player : CharacterBody2D
 
     private void _on_jump_timer_timeout()
     {
-        NewState = State.Fall;   
+        NewState = State.Fall;
         JumpTimer.Stop();
     }
 
