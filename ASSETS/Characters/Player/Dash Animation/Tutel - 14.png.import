@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jwwaij7nicen"
-path="res://.godot/imported/Tutel - 11.png-db6a4cf6e87f702ac44d3b02a93df964.ctex"
+uid="uid://cbtmn7veys57m"
+path="res://.godot/imported/Tutel - 14.png-a255c15cf4e9c1e834a271141a2e3f89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSETS/Characters/Player/Tutel/Tutel - 11.png"
-dest_files=["res://.godot/imported/Tutel - 11.png-db6a4cf6e87f702ac44d3b02a93df964.ctex"]
+source_file="res://ASSETS/Characters/Player/Dash Animation/Tutel - 14.png"
+dest_files=["res://.godot/imported/Tutel - 14.png-a255c15cf4e9c1e834a271141a2e3f89.ctex"]
 
 [params]
 

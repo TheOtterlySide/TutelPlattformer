@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de1cupvijt6yx"
-path="res://.godot/imported/Tutel - 10.png-b6dce5e38b06957cb93784566d97944c.ctex"
+uid="uid://b57vwoxqyle74"
+path="res://.godot/imported/Tutel - 12.png-85a078a57536dc3862615e0148897bf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSETS/Characters/Player/Tutel/Tutel - 10.png"
-dest_files=["res://.godot/imported/Tutel - 10.png-b6dce5e38b06957cb93784566d97944c.ctex"]
+source_file="res://ASSETS/Characters/Player/Jump Jump Animation/Tutel - 12.png"
+dest_files=["res://.godot/imported/Tutel - 12.png-85a078a57536dc3862615e0148897bf1.ctex"]
 
 [params]
 

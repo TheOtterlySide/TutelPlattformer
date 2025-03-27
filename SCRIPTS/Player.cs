@@ -74,7 +74,10 @@ public partial class Player : CharacterBody2D
     private Vector2 GunPositionOG;
 
     private GpuParticles2D WallSlideParticle;
+    private Area2D DashPositionRight;
+    private GpuParticles2D DashParticle;
     private Vector2 WallSlideParticlePositionOG;
+    private Vector2 DashParticlePositionOG;
 
     private Vector2 BulletDirection = Vector2.Right;
     private Bullet instance;
@@ -102,8 +105,11 @@ public partial class Player : CharacterBody2D
         ShootTimer = GetNode<Timer>("Timer/ShootTimer");
         JumpTimer = GetNode<Timer>("Timer/JumpTimer");
         PlayerSprite = GetNode<AnimatedSprite2D>("PlayerSprite");
-        WallSlideParticle = GetNode<GpuParticles2D>("GPUParticles2D");
+        WallSlideParticle = GetNode<GpuParticles2D>("SlideParticles");
+        DashParticle = GetNode<GpuParticles2D>("DashParticles");
         WallSlideParticlePositionOG = WallSlideParticle.Position;
+        DashParticlePositionOG = DashParticle.Position;
+        DashPositionRight = GetNode<Area2D>("DashPosition");
         DoubleJump = OGDoubleJump;
         AmmoOG = Ammunition;
 
@@ -257,6 +263,7 @@ public partial class Player : CharacterBody2D
             {
                 velocity.X = PlayerDash(velocity, direction).X;
                 DashLogic();
+                
             }
         }
 
@@ -283,7 +290,7 @@ public partial class Player : CharacterBody2D
 
             case State.Move:
 
-                if (CurrentState == State.Idle)
+                if (CurrentState == State.Idle || CurrentState == State.Dash)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("MOVE");
@@ -292,10 +299,8 @@ public partial class Player : CharacterBody2D
                 break;
 
             case State.Dash:
-
                 SetCurrentState();
                 sfm.TransitionTo("DASH");
-
                 break;
 
             case State.Jump:
@@ -307,7 +312,7 @@ public partial class Player : CharacterBody2D
 
             case State.JumpJump:
 
-                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.Slide)
+                if (CurrentState == State.Jump || CurrentState == State.Fall || CurrentState == State.Dash)
                 {
                     SetCurrentState();
                     sfm.TransitionTo("JUMPJUMP");
@@ -373,6 +378,7 @@ public partial class Player : CharacterBody2D
         }
 
         WallSlideParticle.Position = WallSlideParticlePositionOG;
+        DashParticle.Position = DashPositionRight.Position;
         BulletDirection = Vector2.Right;
     }
 
@@ -387,6 +393,7 @@ public partial class Player : CharacterBody2D
         }
 
         WallSlideParticle.Position = GunPositionLeft.Position;
+        DashParticle.Position = DashParticlePositionOG;
         BulletDirection = Vector2.Left;
     }
 
@@ -394,6 +401,7 @@ public partial class Player : CharacterBody2D
     {
         CanDash = false;
         NewState = State.Dash;
+        DashParticle.Emitting = true;
         DashTimer.Start();
     }
 
