@@ -348,6 +348,11 @@ public partial class Player : CharacterBody2D
                 sfm.TransitionTo("IDLE");
                 break;
         }
+
+        if (CurrentState != State.JumpJump && Gun.Visible == false)
+        {
+            Gun.Visible = true;
+        }
     }
 
     private void ResetDoubleJump()
@@ -395,6 +400,7 @@ public partial class Player : CharacterBody2D
     private void JumpJumpLogic()
     {
         JumpTimer.Start();
+        Gun.Visible = false;
         --DoubleJump;
         NewState = State.JumpJump;
     }

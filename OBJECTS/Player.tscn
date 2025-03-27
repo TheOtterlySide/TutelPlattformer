@@ -1,14 +1,18 @@
-[gd_scene load_steps=50 format=3 uid="uid://cg515s8rto0rk"]
+[gd_scene load_steps=54 format=3 uid="uid://cg515s8rto0rk"]
 
 [ext_resource type="Script" path="res://SCRIPTS/Player.cs" id="1_xvgui"]
 [ext_resource type="PackedScene" uid="uid://dovyturxri6dl" path="res://OBJECTS/Bullet.tscn" id="2_xuceo"]
 [ext_resource type="Texture2D" uid="uid://bn45vlucvwwn5" path="res://ASSETS/Characters/Player/Tutel.png" id="3_w1dfp"]
 [ext_resource type="Texture2D" uid="uid://cc8lqb02y14d1" path="res://ASSETS/Characters/Player/Wallslide.png" id="4_ajj8t"]
+[ext_resource type="Texture2D" uid="uid://de1cupvijt6yx" path="res://ASSETS/Characters/Player/Tutel/Tutel - 10.png" id="4_fmna8"]
 [ext_resource type="Texture2D" uid="uid://bbtefmxcq2c6o" path="res://ASSETS/Characters/Player/Watergun.png" id="4_uj4co"]
+[ext_resource type="Texture2D" uid="uid://jwwaij7nicen" path="res://ASSETS/Characters/Player/Tutel/Tutel - 11.png" id="5_g7e5y"]
 [ext_resource type="Texture2D" uid="uid://d33mqps6in104" path="res://ASSETS/Objects/vfx_effect_diamond_1.png" id="5_t6rmb"]
 [ext_resource type="Texture2D" uid="uid://bkg55x5caxu7w" path="res://ASSETS/Characters/Player/HUD_Ammo_TOP.png" id="6_2o4kx"]
 [ext_resource type="Texture2D" uid="uid://bt6c8eqy75nma" path="res://ASSETS/Characters/Player/HUD_Ammo.png" id="6_gmy8d"]
+[ext_resource type="Texture2D" uid="uid://b57vwoxqyle74" path="res://ASSETS/Characters/Player/Tutel/Tutel - 12.png" id="6_jf7g2"]
 [ext_resource type="Script" path="res://SCRIPTS/ButtonLogic.cs" id="7_rcw51"]
+[ext_resource type="Texture2D" uid="uid://sibsyneiwxyn" path="res://ASSETS/Characters/Player/Tutel/Tutel - 13.png" id="7_vo5el"]
 [ext_resource type="Texture2D" uid="uid://d1p26pdj2j6wi" path="res://ASSETS/Characters/Player/HUD.png" id="7_wqqvr"]
 [ext_resource type="Script" path="res://SCRIPTS/StateMachine.cs" id="9_i6h4j"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/IDLE.cs" id="10_ia81d"]
@@ -103,10 +107,22 @@ animations = [{
 "name": &"jump",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fmna8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g7e5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jf7g2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vo5el")
+}],
 "loop": true,
 "name": &"jump2",
-"speed": 5.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -290,7 +306,7 @@ BulletScene = ExtResource("2_xuceo")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_676qr")
-animation = &"slide"
+animation = &"move"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
