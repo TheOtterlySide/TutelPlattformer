@@ -590,6 +590,7 @@ script = ExtResource("17_pqd46")
 Player = NodePath("../..")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 41.0
 offset_top = -48.0
 offset_right = 81.0
