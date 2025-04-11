@@ -32,8 +32,6 @@ public partial class GameLogic : Node2D
 				PauseGame();
 			}
 		}
-		
-		
 	}
 
 	private void PauseGame()

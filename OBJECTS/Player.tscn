@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://SCRIPTS/STATES/MOVE.cs" id="13_ou7pl"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/DASH.cs" id="13_wo0q0"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/JUMPJUMP.cs" id="14_oma1q"]
+[ext_resource type="FontFile" uid="uid://dn2jfrnjvn531" path="res://LEVEL/upheavtt.ttf" id="15_jcsai"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/SLIDE.cs" id="15_vrocs"]
 [ext_resource type="Script" path="res://SCRIPTS/STATES/FALL.cs" id="17_pqd46"]
 
@@ -167,14 +168,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SystemFont" id="SystemFont_cjxme"]
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_4lt8d"]
-font = SubResource("SystemFont_cjxme")
+font = ExtResource("15_jcsai")
 font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_vlu07"]
+font = ExtResource("15_jcsai")
 font_size = 100
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpiur"]
@@ -432,6 +431,7 @@ grow_horizontal = 0
 label_settings = SubResource("LabelSettings_4lt8d")
 
 [node name="PauseMenu" type="CanvasLayer" parent="Camera2D"]
+process_mode = 2
 visible = false
 
 [node name="Control" type="Control" parent="Camera2D/PauseMenu"]
@@ -477,10 +477,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.5
-offset_top = -115.5
-offset_right = 165.5
-offset_bottom = 21.5
+offset_left = -156.5
+offset_top = -120.0
+offset_right = 156.5
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -491,24 +491,34 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Main Menu" type="Button" parent="Camera2D/PauseMenu/Control"]
-layout_mode = 0
-offset_left = -21.0
-offset_top = 60.0
-offset_right = 75.0
-offset_bottom = 91.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 12.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("15_jcsai")
 text = "Main Menu"
 script = ExtResource("7_rcw51")
 
 [node name="Resume" type="Button" parent="Camera2D/PauseMenu/Control"]
 layout_mode = 0
-offset_left = -21.0
-offset_top = 110.0
-offset_right = 75.0
-offset_bottom = 141.0
+offset_left = -76.0
+offset_top = 112.0
+offset_right = 20.0
+offset_bottom = 143.0
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("15_jcsai")
 text = "Resume"
 script = ExtResource("7_rcw51")
 
@@ -606,7 +616,7 @@ wait_time = 2.0
 [node name="JumpTimer" type="Timer" parent="Timer"]
 wait_time = 0.5
 
-[connection signal="pressed" from="Camera2D/PauseMenu/Control/Main Menu" to="Camera2D/PauseMenu/Control/Main Menu" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="Camera2D/PauseMenu/Control/Main Menu" to="Camera2D/PauseMenu/Control/Main Menu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Camera2D/PauseMenu/Control/Resume" to="Camera2D/PauseMenu/Control/Resume" method="_on_resume_pressed"]
 [connection signal="animation_finished" from="Watergun" to="." method="_on_shoot_animation_finished"]
 [connection signal="timeout" from="Timer/DashTimer" to="." method="_on_timer_timeout"]

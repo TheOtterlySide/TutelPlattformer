@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tutel"
-run/main_scene="res://LEVEL/level_1.tscn"
+run/main_scene="res://LEVEL/Main Menu.tscn"
 config/features=PackedStringArray("4.3", "C#")
 config/icon="res://icon.svg"
 
@@ -23,11 +23,11 @@ WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/borderless=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 
 [dotnet]
 
@@ -80,6 +80,7 @@ Fire={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 
 [wwise]
 

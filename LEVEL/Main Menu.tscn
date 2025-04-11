@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc0jbrhmuhf2j"]
+[gd_scene load_steps=12 format=3 uid="uid://dc0jbrhmuhf2j"]
 
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_mcbho"]
 [ext_resource type="Script" path="res://SCRIPTS/ButtonLogic.cs" id="1_owat7"]
@@ -9,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://1yj4sk0gst0y" path="res://ASSETS/Backgrounds/Underwater/foreground-2.png" id="6_qatwj"]
 [ext_resource type="Texture2D" uid="uid://c6qyom4hn4k7s" path="res://ASSETS/Backgrounds/background_clouds_small.png" id="7_1rgda"]
 [ext_resource type="Texture2D" uid="uid://kfsd0nnbsw33" path="res://ASSETS/Backgrounds/Underwater/sand.png" id="8_8817u"]
+[ext_resource type="FontFile" uid="uid://dn2jfrnjvn531" path="res://LEVEL/upheavtt.ttf" id="9_t8rc3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vibus"]
+font = ExtResource("9_t8rc3")
+font_size = 100
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -45,7 +50,8 @@ motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(320, 2.08165e-12)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(-4.4, 32.6)
+position = Vector2(-5, 22)
+scale = Vector2(1, 1.10444)
 texture = ExtResource("3_hkf6r")
 centered = false
 
@@ -86,38 +92,63 @@ texture = ExtResource("8_8817u")
 centered = false
 
 [node name="Load Game" type="Button" parent="."]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -107.35
+offset_left = -138.0
 offset_top = 60.0
-offset_right = -11.35
+offset_right = -42.0
 offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("9_t8rc3")
 text = "Load Game"
 script = ExtResource("1_owat7")
 
 [node name="Exit" type="Button" parent="."]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.12
+offset_left = -56.0
 offset_top = 210.0
-offset_right = 20.88
+offset_right = -19.0
 offset_bottom = 243.376
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("9_t8rc3")
 text = "Exit"
 script = ExtResource("1_owat7")
+
+[node name="Tutel" type="Label" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = -140.0
+offset_right = 156.5
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Tutel"
+label_settings = SubResource("LabelSettings_vibus")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Load Game" to="Load Game" method="_on_pressed"]
 [connection signal="pressed" from="Exit" to="Exit" method="_on_exit_pressed"]
