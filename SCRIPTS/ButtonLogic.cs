@@ -13,6 +13,14 @@ public partial class ButtonLogic : Button
     {
         currentScene = GetTree().GetCurrentScene();
     }
+    
+    private void OnVisibilityChanged()
+    {
+        if (Visible && Name == "Main Menu")
+        {
+            GrabFocus();
+        }
+    }
 
     private void _on_pressed()
     {

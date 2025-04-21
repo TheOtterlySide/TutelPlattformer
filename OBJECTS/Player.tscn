@@ -505,6 +505,9 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_bottom = NodePath("../Resume")
+focus_next = NodePath("../Resume")
+focus_previous = NodePath(".")
 theme_override_fonts/font = ExtResource("15_jcsai")
 text = "Main Menu"
 script = ExtResource("7_rcw51")
@@ -518,6 +521,9 @@ offset_bottom = 143.0
 scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../Main Menu")
+focus_next = NodePath("../Main Menu")
+focus_previous = NodePath(".")
 theme_override_fonts/font = ExtResource("15_jcsai")
 text = "Resume"
 script = ExtResource("7_rcw51")
@@ -617,6 +623,7 @@ wait_time = 2.0
 wait_time = 0.5
 
 [connection signal="pressed" from="Camera2D/PauseMenu/Control/Main Menu" to="Camera2D/PauseMenu/Control/Main Menu" method="_on_main_menu_pressed"]
+[connection signal="visibility_changed" from="Camera2D/PauseMenu/Control/Main Menu" to="Camera2D/PauseMenu/Control/Main Menu" method="OnVisibilityChanged"]
 [connection signal="pressed" from="Camera2D/PauseMenu/Control/Resume" to="Camera2D/PauseMenu/Control/Resume" method="_on_resume_pressed"]
 [connection signal="animation_finished" from="Watergun" to="." method="_on_shoot_animation_finished"]
 [connection signal="timeout" from="Timer/DashTimer" to="." method="_on_timer_timeout"]

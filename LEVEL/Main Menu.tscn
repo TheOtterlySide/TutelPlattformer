@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc0jbrhmuhf2j"]
+[gd_scene load_steps=13 format=3 uid="uid://dc0jbrhmuhf2j"]
 
+[ext_resource type="Script" path="res://LEVEL/MainMenu.cs" id="1_0473r"]
 [ext_resource type="Texture2D" uid="uid://b1m5fadhgy7mj" path="res://ASSETS/Backgrounds/background_sky.png" id="1_mcbho"]
 [ext_resource type="Script" path="res://SCRIPTS/ButtonLogic.cs" id="1_owat7"]
 [ext_resource type="Texture2D" uid="uid://bubyp1esnwdsf" path="res://ASSETS/Backgrounds/Underwater/far.png" id="2_m8soh"]
@@ -24,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_0473r")
 metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -106,6 +108,8 @@ offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+focus_neighbor_bottom = NodePath("../Exit")
+focus_next = NodePath("../Exit")
 theme_override_fonts/font = ExtResource("9_t8rc3")
 text = "Load Game"
 script = ExtResource("1_owat7")
@@ -125,6 +129,9 @@ offset_bottom = 243.376
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
+focus_neighbor_top = NodePath("../Load Game")
+focus_next = NodePath("../Load Game")
+focus_previous = NodePath(".")
 theme_override_fonts/font = ExtResource("9_t8rc3")
 text = "Exit"
 script = ExtResource("1_owat7")

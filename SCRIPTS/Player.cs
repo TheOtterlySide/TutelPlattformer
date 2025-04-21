@@ -263,7 +263,6 @@ public partial class Player : CharacterBody2D
             {
                 velocity.X = PlayerDash(velocity, direction).X;
                 DashLogic();
-                
             }
         }
 
