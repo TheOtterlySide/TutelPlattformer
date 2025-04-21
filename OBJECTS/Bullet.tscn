@@ -17,8 +17,9 @@ max_contacts_reported = 1
 script = ExtResource("1_pv244")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.08165e-12, -2.25)
-scale = Vector2(0.708333, 0.520833)
+self_modulate = Color(0, 0, 0.623529, 1)
+position = Vector2(-0.249998, -1)
+scale = Vector2(0.604167, 0.208333)
 texture = ExtResource("1_oqysd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
